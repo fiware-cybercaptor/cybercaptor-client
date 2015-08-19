@@ -1,0 +1,104 @@
+body {
+  background-color: lightgrey;
+}
+svg{
+  background-color: white;
+}
+.node{
+ stroke: #fff;
+ stroke-width: 1.5px;
+}
+.link{
+ stroke: #999;
+ stroke-opacity: .6.;
+}
+.tabulation{
+ margin-left: 5em;
+}
+.attack-graph{
+  height: 400px;
+  overflow-y: scroll;
+}
+#tot_remed{
+  height: 400px;
+  overflow-y:scroll;
+}
+#remediation_panel{
+  height: 75px;
+  overflow-y: scroll;
+}
+.green{
+  color: green;
+  font-size: 25px;
+}
+.yellow{
+  color: yellow;
+  background-color: black;
+  font-size: 25px;
+}
+.orange{
+  color: orange;
+  background-color: black;
+  font-size: 25px;
+}
+.red{
+  color: red;
+  background-color: black;
+  font-size: 25px;
+}
+.black{
+  color: black;
+  background-color: white;
+  font-size: 25px;
+}
+#FirstCircle{
+  background: #FF8000;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  float:left;
+  margin-right:10px;
+}
+#SecondCircle{
+  background: #0431B4;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  float:left;
+  margin-right:10px;
+}
+#ThirdCircle{
+  background: #81BEF7;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  float:left;
+  margin-right:10px;
+}
+#FirstCircleCorrected{
+  background: #FF8000;
+  border : 3px solid green;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  float:left;
+  margin-right:10px;
+}
+#SecondCircleCorrected{
+  background: #0431B4;
+  border : 3px solid green;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  float:left;
+  margin-right:10px;
+}
+#ThirdCircleCorrected{
+  background: #81BEF7;
+  border : 3px solid green;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  float:left;
+  margin-right:10px;
+}
