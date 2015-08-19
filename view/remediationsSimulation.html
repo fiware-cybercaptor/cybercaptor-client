@@ -1,0 +1,73 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" href="#">CyberCAPTOR Client</a>
+       </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#/welcome">Initialization</a></li>
+            <li><a href="#/configuration">Configuration</a></li>
+            <li><a href="#/attackGraph">Attack Graph</a></li>
+            <li><a href="#/attackPath">Attack Path</a></li>
+            <li class="active"><a href="#/remediationSimulation">Remediation Simulation</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+<br/><br/><br/>
+
+<div class="col-md-9">
+   <div class="panel panel-default">
+    <div class="panel-heading"> 
+      <strong>Remediation Simulation</strong>
+      <form name="myForm">
+        <span class="tabulation"> <label><input type="radio" ng-model="view.status" value="Logical" checked="checked">Logical</label>
+        <span class="tabulation"> <label><input type="radio" ng-model="view.status" value="Topological">Topological</label>
+      </form>
+    </div>
+
+    <div class="panel-body">
+     <div ng-switch="view.status">
+        <div ng-switch-default="Logical">
+          <div class="attack-graph"  graph-simul-drawing ></div>
+        </div>
+        <div ng-switch-when="Topological">
+          <div class="attack-graph" ng-controller="attackGraphTopologicalController" graph-topo-drawing></div>
+        </div>
+      </div>
+   </div>
+ </div>
+</div>
+
+<div class="col-md-2">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div> Leaf <div id="FirstCircle"></div> </div> <span class="tabulation"> 
+      <div> And <div id="SecondCircle"></div> </div> <span class="tabulation">
+      <div> Or <div id="ThirdCircle"></div> </div> <span class="tabulation">
+      <div> Leaf Corrected <div id="FirstCircleCorrected"></div> </div> <span class="tabulation"> 
+      <div> And Corrected<div id="SecondCircleCorrected"></div> </div> <span class="tabulation">
+      <div> Or Corrected<div id="ThirdCircleCorrected"></div> </div>
+   </div>
+ </div>
+</div>
+
+<div class="col-md-2">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div> 
+        <button ng-click="validate()">Validate</button> 
+      </div>
+   </div>
+ </div>
+</div>
+
+
+
+</div>

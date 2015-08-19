@@ -1,0 +1,123 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+       <span class="sr-only">Toggle navigation</span>
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">CyberCAPTOR Client</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#/welcome">Initialization</a></li>
+        <li><a href="#/configuration">Configuration</a></li>
+        <li><a href="#/attackGraph">Attack Graph</a></li>
+        <li class="active"><a href="#/attackPath">Attack Path</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<br/><br/><br/>
+
+<div class="col-md-9">
+  <div class="panel panel-default">
+    <div class="panel-heading"> 
+      <strong>Attack Path</strong>
+      <form name="myForm">
+        <span class="tabulation"> <label><input type="radio" ng-model="view.status" value="Logical" checked="checked">Logical</label>
+          <span class="tabulation"> <label><input type="radio" ng-model="view.status" value="Topological">Topological</label>
+          </form>
+    </div>
+
+    <div class="panel-body">
+      <div ng-switch="view.status">
+        <div ng-switch-default="Logical">
+          <div class="attack-graph"  graph-drawing></div>
+        </div>
+        <div ng-switch-when="Topological">
+          <div class="attack-graph" ng-controller="attackPathTopologicalController" graph-topo-drawing></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="col-md-2">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Selection</div>
+        <div class="panel-body" class="texte">
+          <p>Select the path : <select ng-init="valSelecter = tab" ng-model="valSelecter" ng-options="item.Value for item in tab" ng-click="appel(valSelecter)"> </select> </p>
+        </div>
+      </div>	
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Attrition Level
+        </div>
+        <div id="selected" class="panel-body">
+          <p style="text-align:center">
+            <span ng-class="{green: graphes.color == 'green', yellow: graphes.color == 'yellow', orange: graphes.color == 'orange', red: graphes.color == 'red', black: graphes.color == 'black'}"> <b> {{ graphes.text }} </b> </span>
+          </p>
+          <div ng-controller="RadialGaugeDemoCtrl">
+            <span width="160" ng-radial-gauge ranges="ranges" value="valueGauge" value-unit="unit" precision="precision" lower-limit="lowerLimit" upper-limit="upperLimit"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div> Leaf <div id="FirstCircle"></div>  <span class="tabulation"> <IMG src="img/pirate.png"> Pirate </div>
+          <div> And <div id="SecondCircle"></div> <span class="tabulation"> <IMG src="img/target.png"> Target </div>
+          <div> Or <div id="ThirdCircle"></div>  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="reme">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <p>Remediations</p>
+          </div>
+          <div id="tot_remed" class="panel-body">
+
+            <ul ng-repeat-start="remed in dataRemediations">
+              <b style="font-size:20px">Remediation: {{ remed.ID+1 }}</b> <span class="tabulation"> <b>Cost</b> : {{ remed.Cost }} € <span class="tabulation"> <a href="#/simulation" ng-click="simulRemed(remed, valSelecter)">Simulate</a>
+
+
+              <li ng-repeat-start="(key, a) in remed.DeployReme"> Action {{ key+1 }} : </br>
+                <ul>
+                  <li> 
+                    <b>Type</b> : {{ a.type }} 
+                  </li> 
+                  <li>
+                    <b>Host</b> : {{ a.machine }} 
+                  </li>
+                  <li>
+                    <b>{{ a.label }}</b>
+                  </li>
+                  <ul>
+                    <li ng-repeat-start="action in a.action track by $index" ng-repeat-end>
+                      {{ action }} 
+                    </li>
+                  </ul >
+                </ul>
+              </li>
+              <ul ng-repeat-end></ul>
+            </ul>
+            <ul ng-repeat-end></ul>
+
+            <li ng-repeat="a in remed.DeployReme"> 
+              <li ng-repeat="a in remed.remediation track by $index"> <b> {{ a }} </li> 
+            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

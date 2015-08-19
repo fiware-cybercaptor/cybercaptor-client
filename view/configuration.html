@@ -1,0 +1,51 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" href="#">CyberCAPTOR Client</a>
+       </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#/welcome">Initialization</a></li>
+            <li class="active"><a href="#/configuration">Configuration</a></li>
+            <li><a href="#/attackGraph">Attack Graph</a></li>
+            <li><a href="#/attackPath">Attack Path</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+     <br/><br/><br/>
+
+<div id="reme" configuration-drawing>
+  <div class="row">
+    <div class="col-md-6">
+     <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong>Configuration</strong> 
+        <span class="tabulation"> <label>Search : <input type="search" ng-model="Name" placeholder="Enter the name"></label>
+          <span class="tabulation"> <button ng-click="sendListHost()">Save</button> 
+      </div>
+          <div id="tot_remed" class="panel-body">
+
+            <ul ng-repeat-start="(key, data) in listHosts.hosts | listFilter:Name">
+              <b style="font-size:20px">Host: {{ data.index+1 }} <span class="tabulation"> Name: {{ data.name }} </b>
+
+              <li ng-repeat-start="a in data.security_requirements"> Value : {{ a.metric }}
+                <span class="tabulation"> <select ng-init="TheValue = tabTmp[key]" ng-model="TheValue" ng-options="item.Value for item in tabMetric" ng-click="updateValue(TheValue, data.index)" ></select> </br>
+              </li>
+
+                <ul ng-repeat-end></ul>
+            </ul>
+            <ul ng-repeat-end></ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
