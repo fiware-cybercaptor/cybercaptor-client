@@ -23,7 +23,18 @@
 <br/><br/><br/>
 
 <div class="col-md-9">
-   <div class="panel panel-default">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <p>How it works ?</p>
+    </div>
+
+    <div class="panel-body">
+      <p>This window displays the simulation of a remediation in the attack graph and show the difference with the original attack graph.</p>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
     <div class="panel-heading"> 
       <strong>Remediation Simulation</strong>
       <form name="myForm">
@@ -62,7 +73,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <div> 
-        <button ng-click="validate()">Validate</button> 
+        <a class="btn btn-success" href="#/attackPath" ng-click="validate()">Validate</a>  <a class="btn btn-warning" href="#/attackPath">Cancel</a>
       </div>
    </div>
  </div>

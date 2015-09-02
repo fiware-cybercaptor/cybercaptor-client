@@ -60,9 +60,9 @@ myApp.directive('graphDrawing', function() {
                 if(graphes != undefined)
                 {
                     var force = d3.layout.force()
-                        .charge(-30)
+                        .charge(-150)
                         .linkDistance(30)
-                        .friction(0.9)
+                        .friction(0.3)
                         .gravity(0.15)
                         .size([width, height])
                         .nodes(graphes.nodes)
