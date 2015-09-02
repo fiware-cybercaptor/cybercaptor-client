@@ -22,6 +22,22 @@
 
 <br/><br/><br/>
 
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong>How it works ?</strong>
+    </div>
+
+    <div class="panel-body">
+      <p>The main window shows the attack path.</p> 
+      <p>You can select the path that you want to visualize with the button in the panel "Selection".</p>
+      <p>The attrition level is visible by a gauge in the panel "Attrition Level".</p>
+      <p>All the remediations for the selected path are listed in the panel "Remediations".</p>
+      <p>You can simulate the application of a remediation on the whole attack graph by clicking on the button "Simulate".</p>
+    </div>
+  </div>
+</div>
+
 <div class="col-md-9">
   <div class="panel panel-default">
     <div class="panel-heading"> 
@@ -78,7 +94,7 @@
     </div>
   </div>
 
-  <div id="reme">
+<div id="reme">
     <div class="row">
       <div class="col-md-12">
         <div class="panel panel-default">
@@ -88,7 +104,7 @@
           <div id="tot_remed" class="panel-body">
 
             <ul ng-repeat-start="remed in dataRemediations">
-              <b style="font-size:20px">Remediation: {{ remed.ID+1 }}</b> <span class="tabulation"> <b>Cost</b> : {{ remed.Cost }} € <span class="tabulation"> <a href="#/simulation" ng-click="simulRemed(remed, valSelecter)">Simulate</a>
+              <b style="font-size:20px">Remediation: {{ remed.ID+1 }}</b> <span class="tabulation"> <b>Cost</b> : {{ remed.Cost }} € <span class="tabulation" /> <a class="btn btn-default" href="#/simulation" role="button" ng-click="simulRemed(remed, valSelecter)">Simulate</a>
 
 
               <li ng-repeat-start="(key, a) in remed.DeployReme"> Action {{ key+1 }} : </br>
@@ -120,4 +136,4 @@
         </div>
       </div>
     </div>
-  </div>
+</div>

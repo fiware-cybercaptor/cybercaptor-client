@@ -12,9 +12,9 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#/welcome">Initialization</a></li>
-            <li><a href="#/configuration">Configuration</a></li>
-            <li><a href="#/attackGraph">Attack Graph</a></li>
-            <li><a href="#/attackPath">Attack Path</a></li>
+            <li ng-show="show"><a href="#/configuration">Configuration</a></li>
+            <li ng-show="show"><a href="#/attackGraph">Attack Graph</a></li>
+            <li ng-show="show"><a href="#/attackPath">Attack Path</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -23,6 +23,20 @@
      <br/><br/><br/>
 
     <div clas="row">
+
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <p><strong>How it works</strong></p>
+          </div>
+
+          <div class="panel-body">
+            <p>This page initialize the server with your data. To send them, click on the button then select a topology file.</p>
+            <p>After seeing your file in the queue, click on "Upload  all" and watch the progress bar. When it is completely filled, it means that your data is loaded.</p>
+          </div>
+        </div>
+      </div>
+
       <div class="col-md-8">
         <div class="panel panel-default">
           <div class="panel-heading">

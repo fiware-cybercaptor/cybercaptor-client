@@ -24,20 +24,35 @@
 
 <div id="reme" configuration-drawing>
   <div class="row">
-    <div class="col-md-6">
+
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p><strong>How it works ?</strong></p>
+        </div>
+
+        <div class="panel-body">
+          <p>On this page, you can configure the parameters to cutomize calculations.</p>
+          <p>In the panel "Configuration", you can set the importance of the hosts.</p>
+          <p>The other panel configures the parameters for remediation cost calculation.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-5">
      <div class="panel panel-default">
       <div class="panel-heading">
         <strong>Configuration</strong> 
         <span class="tabulation"> <label>Search : <input type="search" ng-model="Name" placeholder="Enter the name"></label>
           <span class="tabulation"> <button ng-click="sendListHost()">Save</button> 
       </div>
-          <div id="tot_remed" class="panel-body">
+          <div id="config" class="panel-body">
 
             <ul ng-repeat-start="(key, data) in listHosts.hosts | listFilter:Name">
               <b style="font-size:20px">Host: {{ data.index+1 }} <span class="tabulation"> Name: {{ data.name }} </b>
 
               <li ng-repeat-start="a in data.security_requirements"> Value : {{ a.metric }}
-                <span class="tabulation"> <select ng-init="TheValue = tabTmp[key]" ng-model="TheValue" ng-options="item.Value for item in tabMetric" ng-click="updateValue(TheValue, data.index)" ></select> </br>
+                <span class="tabulation"> <select ng-init="TheValue = tabTmp[data.index]" ng-model="TheValue" ng-options="item.Value for item in tabMetric" ng-click="updateValue(TheValue, data.index)" ></select> </br>
               </li>
 
                 <ul ng-repeat-end></ul>
@@ -47,5 +62,54 @@
           </div>
         </div>
       </div>
+
+      <div class="col-md-5">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <strong>Global</strong> <span class="tabulation"> <button>Save</button>
+          </div>
+          <div class="panel-body">
+            <ul ng-repeat-start="(key, data) in global.global_parameters"> {{ key }} : {{ data }} <span class="tabulation"><label>Value : <input type="number"></label></ul>
+            <ul ng-repeat-end></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <strong>Snort-Rule</strong> <span class="tabulation"> <button>Save</button>
+          </div>
+          <div class="panel-body">
+            <ul ng-repeat-start="(key, data) in snortRule.operational_cost_parameters"> {{ key }} : {{ data }} <span class="tabulation"><label>Value : <input type="number"></label></ul>
+              <ul ng-repeat-end></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <strong>Firewall-Rule</strong> <span class="tabulation"> <button>Save</button>
+          </div>
+          <div class="panel-body">
+            <ul ng-repeat-start="(key, data) in firewall.operational_cost_parameters"> {{ key }} : {{ data }}</ul>
+            <ul ng-repeat-end></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <strong>Patch</strong> <span class="tabulation"> <button>Save</button>
+          </div>
+          <div class="panel-body">
+           <ul ng-repeat-start="(key, data) in patch.operational_cost_parameters"> {{ key }} : {{ data }}</ul>
+           <ul ng-repeat-end></ul>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>

@@ -31,7 +31,7 @@
 /**
 *	Defines dependencies
 */
-var myApp = angular.module('CyberCAPTOR', ['routeAppControllers', 'ngRoute', 'ngRadialGauge', 'myModule', 'angularFileUpload']);
+var myApp = angular.module('CyberCAPTOR', ['routeAppControllers', 'ngRoute', 'ngRadialGauge', 'myModule', 'angularFileUpload', 'ngCookies']);
 
 
 /**
@@ -39,7 +39,8 @@ var myApp = angular.module('CyberCAPTOR', ['routeAppControllers', 'ngRoute', 'ng
 */
 myApp.constant("myConfig", {
 	// URL base for REST request
-    "url": "http://localhost:8080/cybercaptor-server/rest/json"
+    "url": "http://localhost:8080/cybercaptor-server/rest/json",
+    "config" : "http://localhost:8080/cybercaptor-server/rest/json/configuration/remediation-cost-parameters"
 })
 
 /**
@@ -52,7 +53,7 @@ myApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpP
 
 	$routeProvider
 	.when('/', {
-		'controller': 'welcomeController', 
+		'controller': 'initController', 
 		'templateUrl': 'view/welcome.html'
 	})
 	.when('/configuration', {

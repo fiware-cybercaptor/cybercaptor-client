@@ -38,7 +38,7 @@
 *   Can exist several attack path, so, it's necessary 
 *       to retrieve the ID of attack path.
 */
-routeAppControllers.controller('attackPathController', function ($scope, $http, myConfig, serviceTest) {
+routeAppControllers.controller('attackPathController', function ($scope, $http, $cookieStore, myConfig, serviceTest) {
                                     
     var defaultPath = 0;
     $scope.valueGauge = 0;
@@ -48,12 +48,13 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
         status : "Logical"
     };
 
+
     // Function available in $scope, to begin the procedure
     $scope.init = function(){
 
-        // Initialize the server
-        var initialize = $http.get(myConfig.url + "/initialize")
-            .success(function(data) {
+               // $scope = serviceTest.get();
+                console.log($scope);
+
 
                 // Request the list of host : name, metric,...
                 var hostList = $http.get(myConfig.url + "/host/list")
@@ -95,7 +96,6 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
                                         })  
                                 })
                         })
-            })
     };   
 
     // Request to display data from remediation
@@ -187,9 +187,6 @@ routeAppControllers.controller('attackGraphController', function ($scope, $http,
 
     $scope.init = function(){
 
-        var initialize = $http.get(myConfig.url + "/initialize")
-            .success(function(data) {
-
                 var number = $http.get(myConfig.url + "/attack_path/number")
                     .success(function(valNumber) {
                         $scope.items = valNumber;
@@ -205,7 +202,6 @@ routeAppControllers.controller('attackGraphController', function ($scope, $http,
                                 $scope.graphes = donnee;
                         })      
                     })
-            })
     };   
 })
 
@@ -227,10 +223,6 @@ routeAppControllers.controller('simulController', function ($scope, $http, myCon
     };   
 
     $scope.init = function(){
-        console.log("Start Init");
-
-        var initialize = $http.get(myConfig.url + "/initialize")
-            .success(function(data) {
 
                 var number = $http.get(myConfig.url + "/attack_path/number")
                     .success(function(valNumber) {
@@ -251,15 +243,17 @@ routeAppControllers.controller('simulController', function ($scope, $http, myCon
                                 $scope.graphes = transformRemediationSimulation(donnee, graphTst);
                         })      
                     })
-            })
     };  
 
     $scope.validate = function(){
 
         var array = serviceTest.getArray();
 
+        alert("Remediation validate");
+
          var validation = $http.get(myConfig.url + "/attack_path/" + array[1].ID + "/remediation/" + array[0].ID + "/validate")
             .success(function(){
+                console.log("val");
             })
     };
 })
@@ -359,7 +353,7 @@ routeAppControllers.controller('attackPathTopologicalController', function ($sco
 *   Retrieve data from server
 *   Initialize values
 */
-routeAppControllers.controller('configurationController', function ($scope, $http, myConfig) {
+routeAppControllers.controller('configurationController', function ($scope, $http, $cookies, myConfig, serviceTest) {
     
     var item = { id, value };
     var values = ["Negligeable", "Minor", "Medium", "Severe", "Catastrophic"];   
@@ -372,13 +366,10 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
         $scope.tabMetric[i] = item;
     }
 
-   
+    console.log($scope);
+
     // Function available in $scope, to begin the procedure
     $scope.init = function(){
-
-        // Initialize the server
-        var initialize = $http.get(myConfig.url + "/initialize")
-            .success(function(data) {
 
                 // Request the list of host : name, metric,...
                 var metric = $http.get(myConfig.url + "/host/list")
@@ -386,7 +377,13 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
 
                         console.debug(host);
 
+                        var obj = {"metric": "Negligeable"};
+                        var obj2 = {"metric": "Minor"};
+
                         $scope.listHosts = host;
+
+                        // Array of values before update 
+                        $scope.tabTmp = [ {value} ];
 
                         var lengthHost = $scope.listHosts.hosts.length;
 
@@ -395,22 +392,63 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
                             $scope.listHosts.hosts[i].index = i;
                         }
 
-                        $scope.tabTmp = [ {value} ];
-                    
-                        // lengthHost-1 : remove "internet_Host" with undefined metric
-                        for(var i=0; i < lengthHost-1; ++i){
-                            var value;
-                            $scope.listHosts.hosts[i].security_requirements.push(value);
-                            // var value = $scope.listHosts.hosts[i].security_requirements[0].metric;
-                            var item = {"Value": value};
-                            $scope.tabTmp[i] = item;
+                        for(var i=0; i<lengthHost-1; ++i){
+                            if($scope.listHosts.hosts[i].security_requirements[0] == undefined){
+                                $scope.listHosts.hosts[i].security_requirements.push({"metric": "Negligeable"}); 
+                                var value = $scope.listHosts.hosts[i].security_requirements[0].metric;
+                                var item = {"Value": value};
+                                $scope.tabTmp[i] = item;                               
+                            }
+                            else{
+                                // lengthHost-1 : remove "internet_Host" with undefined metric
+                                for(var i=0; i < lengthHost-1; ++i){
+                                    var value = $scope.listHosts.hosts[i].security_requirements[0].metric;
+                                  //  $scope.listHosts.hosts[i].security_requirements.push(value);
+                                    var item = {"Value": value};
+                                    $scope.tabTmp[i] = item;
+                                }
+                            }
                         }
                     })
-            })
+
+                    var global = $http.get(myConfig.config + "/global")
+                        .success(function(data){
+                            console.info(data);
+                            $scope.global = data;
+                        })
+
+                    var snortRule = $http.get(myConfig.config + "/snort-rule")
+                        .success(function(data){
+                            console.log(data);
+                            $scope.snortRule = data;
+                        })
+
+                    var firewall = $http.get(myConfig.config + "/firewall-rule")
+                        .success(function(data){
+                            console.log(data);
+                            $scope.firewall = data;
+                        })
+
+                    var patch = $http.get(myConfig.config + "/patch")
+                        .success(function(data){
+                            console.log(data);
+                            $scope.patch = data;
+                        })
+                serviceTest.set($scope);
+                serviceTest.get();
     };   
 
     $scope.updateValue = function(data, key){
+        console.log(data);
+        console.log(key);
+    
+        console.log($scope.listHosts.hosts[key].security_requirements[0].metric);     
+
         $scope.listHosts.hosts[key].security_requirements[0].metric = data.Value;
+
+        console.log($scope.listHosts.hosts[key].security_requirements[0].metric);     
+
+        console.log($scope);      
     };
 
     $scope.sendListHost = function(){
@@ -418,7 +456,6 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
             .success(function(data){
             })
     };
-
 })
 
 // ****************************************************
@@ -429,11 +466,18 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
 *   @param myConfig
 *
 */
-routeAppControllers.controller('welcomeController', function($scope, $http, myConfig, FileUploader){
+routeAppControllers.controller('initController', function($scope, $http, $cookies, myConfig, FileUploader){
+
+     $scope.show = false;
+
+    $scope.visible = function(tst){
+       return tst;
+    }
 
 // **************** File Uploader **************
     var uploader = $scope.uploader = new FileUploader({
-        url: myConfig.url + "/initialize"
+        url: myConfig.url + "/initialize",
+        withCredentials : true
     });
 
     // Filters
@@ -474,6 +518,11 @@ routeAppControllers.controller('welcomeController', function($scope, $http, myCo
     };
     uploader.onCompleteAll = function(){
         console.info('onCompleteAll');
+        console.info('Chargé');
+        tst = true;
+        $scope.show = true;
+        
     };
     console.info('uploader', uploader);
+
 })
