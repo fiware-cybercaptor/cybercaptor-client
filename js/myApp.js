@@ -31,7 +31,7 @@
 /**
 *	Defines dependencies
 */
-var myApp = angular.module('CyberCAPTOR', ['routeAppControllers', 'ngRoute', 'ngRadialGauge', 'myModule', 'angularFileUpload', 'ngCookies']);
+var myApp = angular.module('CyberCAPTOR', ['routeAppControllers', 'ngRoute', 'ngRadialGauge', 'myModule', 'angularFileUpload']);
 
 
 /**

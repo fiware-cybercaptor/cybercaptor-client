@@ -38,7 +38,7 @@
 *   Can exist several attack path, so, it's necessary 
 *       to retrieve the ID of attack path.
 */
-routeAppControllers.controller('attackPathController', function ($scope, $http, $cookieStore, myConfig, serviceTest) {
+routeAppControllers.controller('attackPathController', function ($scope, $http, myConfig, serviceTest) {
                                     
     var defaultPath = 0;
     $scope.valueGauge = 0;
@@ -52,50 +52,46 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
     // Function available in $scope, to begin the procedure
     $scope.init = function(){
 
-               // $scope = serviceTest.get();
-                console.log($scope);
+        // Request the list of host : name, metric,...
+        var hostList = $http.get(myConfig.url + "/host/list")
+            .success(function(host){
+                $scope.listHosts = host;
+            })
 
+        // Request the number of path
+        var number = $http.get(myConfig.url + "/attack_path/number")
+            .success(function(valNumber) {
+                $scope.items = valNumber;
 
-                // Request the list of host : name, metric,...
-                var hostList = $http.get(myConfig.url + "/host/list")
-                    .success(function(host){
-                        $scope.listHosts = host;
+                // Array of value for the list
+                $scope.tab = [ {id, value} ];
+
+                // Fill the tab with ID and Values
+                for(var i=1; i <= $scope.items.number; ++i){
+                    var id = i-1;
+                    var value = i;
+                    var list = {"ID" : id, "Value" : value};
+
+                    $scope.tab[i-1] = list;
+                }
+
+                // Request data to build graph
+                var graph = $http.get(myConfig.url + "/attack_graph")
+                    .success(function(valGraph) {
+
+                        var donnee = transformGraph(valGraph);
+                        $scope.attack_graph = donnee;
+
+                        // Request data to build one path
+                        var list = $http.get(myConfig.url + "/attack_path/" + defaultPath)
+                            .success(function(valList) {                                    
+                                $scope.appel($scope.tab[defaultPath]);
+
+                                // Default value in selecter
+                                $scope.valSelecter = $scope.tab[defaultPath];
+                            })  
                     })
-
-                    // Request the number of path
-                    var number = $http.get(myConfig.url + "/attack_path/number")
-                        .success(function(valNumber) {
-                            $scope.items = valNumber;
-
-                            // Array of value for the list
-                            $scope.tab = [ {id, value} ];
-
-                            // Fill the tab with ID and Values
-                            for(var i=1; i <= $scope.items.number; ++i){
-                                var id = i-1;
-                                var value = i;
-                                var list = {"ID" : id, "Value" : value};
-
-                                $scope.tab[i-1] = list;
-                            }
-
-                            // Request data to build graph
-                            var graph = $http.get(myConfig.url + "/attack_graph")
-                                .success(function(valGraph) {
-
-                                    var donnee = transformGraph(valGraph);
-                                    $scope.attack_graph = donnee;
-
-                                    // Request data to build one path
-                                    var list = $http.get(myConfig.url + "/attack_path/" + defaultPath)
-                                        .success(function(valList) {                                    
-                                            $scope.appel($scope.tab[defaultPath]);
-
-                                            // Default value in selecter
-                                            $scope.valSelecter = $scope.tab[defaultPath];
-                                        })  
-                                })
-                        })
+            })
     };   
 
     // Request to display data from remediation
@@ -187,21 +183,21 @@ routeAppControllers.controller('attackGraphController', function ($scope, $http,
 
     $scope.init = function(){
 
-                var number = $http.get(myConfig.url + "/attack_path/number")
-                    .success(function(valNumber) {
-                        $scope.items = valNumber;
+        var number = $http.get(myConfig.url + "/attack_path/number")
+            .success(function(valNumber) {
+                $scope.items = valNumber;
 
-                        var list = $http.get(myConfig.url + "/attack_path/list")
-                            .success(function(valList) {
-                                $scope.tab = valList;
-                         })
-
-                        var graph = $http.get(myConfig.url + "/attack_graph")
-                            .success(function(valGraph) {
-                                var donnee = transformGraph(valGraph);
-                                $scope.graphes = donnee;
-                        })      
+                var list = $http.get(myConfig.url + "/attack_path/list")
+                    .success(function(valList) {
+                        $scope.tab = valList;
                     })
+
+                var graph = $http.get(myConfig.url + "/attack_graph")
+                    .success(function(valGraph) {
+                        var donnee = transformGraph(valGraph);
+                        $scope.graphes = donnee;
+                    })      
+            })
     };   
 })
 
@@ -224,25 +220,25 @@ routeAppControllers.controller('simulController', function ($scope, $http, myCon
 
     $scope.init = function(){
 
-                var number = $http.get(myConfig.url + "/attack_path/number")
-                    .success(function(valNumber) {
-                        $scope.items = valNumber;
+        var number = $http.get(myConfig.url + "/attack_path/number")
+            .success(function(valNumber) {
+                $scope.items = valNumber;
 
-                        var list = $http.get(myConfig.url + "/attack_path/list")
-                            .success(function(valList) {
-                                $scope.tab = valList;
-                         })
-
-                        var graph = $http.get(myConfig.url + "/attack_graph")
-                            .success(function(valGraph) {
-                                var donnee = transformGraph(valGraph);
-                                $scope.basicGraphes = donnee;
-
-                                var graphTst = serviceTest.get();
-
-                                $scope.graphes = transformRemediationSimulation(donnee, graphTst);
-                        })      
+                var list = $http.get(myConfig.url + "/attack_path/list")
+                    .success(function(valList) {
+                         $scope.tab = valList;
                     })
+
+                var graph = $http.get(myConfig.url + "/attack_graph")
+                    .success(function(valGraph) {
+                        var donnee = transformGraph(valGraph);
+                        $scope.basicGraphes = donnee;
+
+                        var graphTst = serviceTest.get();
+
+                        $scope.graphes = transformRemediationSimulation(donnee, graphTst);
+                    })      
+            })
     };  
 
     $scope.validate = function(){
@@ -353,7 +349,7 @@ routeAppControllers.controller('attackPathTopologicalController', function ($sco
 *   Retrieve data from server
 *   Initialize values
 */
-routeAppControllers.controller('configurationController', function ($scope, $http, $cookies, myConfig, serviceTest) {
+routeAppControllers.controller('configurationController', function ($scope, $http, myConfig, serviceTest) {
     
     var item = { id, value };
     var values = ["Negligeable", "Minor", "Medium", "Severe", "Catastrophic"];   
@@ -366,89 +362,65 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
         $scope.tabMetric[i] = item;
     }
 
-    console.log($scope);
-
     // Function available in $scope, to begin the procedure
     $scope.init = function(){
 
-                // Request the list of host : name, metric,...
-                var metric = $http.get(myConfig.url + "/host/list")
-                    .success(function(host){
+        // Request the list of host : name, metric,...
+        var metric = $http.get(myConfig.url + "/host/list")
+            .success(function(host){
 
-                        console.debug(host);
+                $scope.listHosts = host;
 
-                        var obj = {"metric": "Negligeable"};
-                        var obj2 = {"metric": "Minor"};
+                    // Array of values before update 
+                    $scope.tabTmp = [ {value} ];
 
-                        $scope.listHosts = host;
+                    var lengthHost = $scope.listHosts.hosts.length;
 
-                        // Array of values before update 
-                        $scope.tabTmp = [ {value} ];
+                    for(var i=0; i<lengthHost; ++i){
+                        var index;
+                        $scope.listHosts.hosts[i].index = i;
+                    }
 
-                        var lengthHost = $scope.listHosts.hosts.length;
-
-                        for(var i=0; i<lengthHost; ++i){
-                            var index;
-                            $scope.listHosts.hosts[i].index = i;
+                    for(var i=0; i<lengthHost-1; ++i){
+                        if($scope.listHosts.hosts[i].security_requirements[0] == undefined){
+                            $scope.listHosts.hosts[i].security_requirements.push({"metric": "Negligeable"}); 
+                            var value = $scope.listHosts.hosts[i].security_requirements[0].metric;
+                            var item = {"Value": value};
+                            $scope.tabTmp[i] = item;                               
                         }
-
-                        for(var i=0; i<lengthHost-1; ++i){
-                            if($scope.listHosts.hosts[i].security_requirements[0] == undefined){
-                                $scope.listHosts.hosts[i].security_requirements.push({"metric": "Negligeable"}); 
+                        else{
+                            // lengthHost-1 : remove "internet_Host" with undefined metric
+                            for(var i=0; i < lengthHost-1; ++i){
                                 var value = $scope.listHosts.hosts[i].security_requirements[0].metric;
                                 var item = {"Value": value};
-                                $scope.tabTmp[i] = item;                               
-                            }
-                            else{
-                                // lengthHost-1 : remove "internet_Host" with undefined metric
-                                for(var i=0; i < lengthHost-1; ++i){
-                                    var value = $scope.listHosts.hosts[i].security_requirements[0].metric;
-                                  //  $scope.listHosts.hosts[i].security_requirements.push(value);
-                                    var item = {"Value": value};
-                                    $scope.tabTmp[i] = item;
-                                }
+                                $scope.tabTmp[i] = item;
                             }
                         }
-                    })
+                    }
+            })
 
-                    var global = $http.get(myConfig.config + "/global")
-                        .success(function(data){
-                            console.info(data);
-                            $scope.global = data;
-                        })
-
-                    var snortRule = $http.get(myConfig.config + "/snort-rule")
-                        .success(function(data){
-                            console.log(data);
-                            $scope.snortRule = data;
-                        })
-
-                    var firewall = $http.get(myConfig.config + "/firewall-rule")
-                        .success(function(data){
-                            console.log(data);
-                            $scope.firewall = data;
-                        })
-
-                    var patch = $http.get(myConfig.config + "/patch")
-                        .success(function(data){
-                            console.log(data);
-                            $scope.patch = data;
-                        })
-                serviceTest.set($scope);
-                serviceTest.get();
+        var global = $http.get(myConfig.config + "/global")
+            .success(function(data){
+                $scope.global = data;
+        })
+        var snortRule = $http.get(myConfig.config + "/snort-rule")
+            .success(function(data){
+                $scope.snortRule = data;
+        })
+        var firewall = $http.get(myConfig.config + "/firewall-rule")
+            .success(function(data){
+                $scope.firewall = data;
+        })
+        var patch = $http.get(myConfig.config + "/patch")
+            .success(function(data){
+                $scope.patch = data;
+        })
+        serviceTest.set($scope);
+        serviceTest.get();
     };   
 
     $scope.updateValue = function(data, key){
-        console.log(data);
-        console.log(key);
-    
-        console.log($scope.listHosts.hosts[key].security_requirements[0].metric);     
-
         $scope.listHosts.hosts[key].security_requirements[0].metric = data.Value;
-
-        console.log($scope.listHosts.hosts[key].security_requirements[0].metric);     
-
-        console.log($scope);      
     };
 
     $scope.sendListHost = function(){
@@ -466,13 +438,10 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
 *   @param myConfig
 *
 */
-routeAppControllers.controller('initController', function($scope, $http, $cookies, myConfig, FileUploader){
+routeAppControllers.controller('initController', function($scope, $http, myConfig, FileUploader){
 
-     $scope.show = false;
-
-    $scope.visible = function(tst){
-       return tst;
-    }
+    // Variable to display tab "Configuration", "Attack Graph" and "Attack Path"
+    $scope.show = false;
 
 // **************** File Uploader **************
     var uploader = $scope.uploader = new FileUploader({
@@ -518,10 +487,8 @@ routeAppControllers.controller('initController', function($scope, $http, $cookie
     };
     uploader.onCompleteAll = function(){
         console.info('onCompleteAll');
-        console.info('Chargé');
-        tst = true;
         $scope.show = true;
-        
+        alert("Data sent");
     };
     console.info('uploader', uploader);
 

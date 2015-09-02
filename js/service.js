@@ -36,20 +36,16 @@ angular.module('myModule', []).service('serviceTest', function(){
   // Getter & setter for initialize and retrieve data
 	this.set = function(data){
 		savedData = data;
-		console.log(savedData);
 	}
 	this.get = function(){
-		console.log(savedData);
 		return savedData;
 	}
 
   // Getter & Setter for remediation simulation
   this.setArray = function(id_path, id_remed){
     array = [id_path, id_remed];
-    console.log(array);
   }
   this.getArray = function(){
-    console.log(array);
     return array;
   }
 });
