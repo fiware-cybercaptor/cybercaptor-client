@@ -19,6 +19,10 @@ svg{
   height: 400px;
   overflow-y: scroll;
 }
+#config{
+  height: 600px;
+  overflow-y:scroll;
+}
 #tot_remed{
   height: 400px;
   overflow-y:scroll;
