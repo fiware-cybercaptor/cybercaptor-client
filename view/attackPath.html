@@ -104,7 +104,7 @@
           <div id="tot_remed" class="panel-body">
 
             <ul ng-repeat-start="remed in dataRemediations">
-              <b style="font-size:20px">Remediation: {{ remed.ID+1 }}</b> <span class="tabulation"> <b>Cost</b> : {{ remed.Cost }} € <span class="tabulation" /> <a class="btn btn-default" href="#/simulation" role="button" ng-click="simulRemed(remed, valSelecter)">Simulate</a>
+              <b style="font-size:20px">Remediation: {{ remed.ID+1 }}</b> <span class="tabulation" /> <b>Cost</b> : {{ remed.Cost }} € <span class="tabulation" /> <b>Habits : {{ remed.Habits }} </b> <span class="tabulation" /> <a class="btn btn-default" href="#/simulation" role="button" ng-click="simulRemed(remed, valSelecter)">Simulate</a>
 
 
               <li ng-repeat-start="(key, a) in remed.DeployReme"> Action {{ key+1 }} : </br>
