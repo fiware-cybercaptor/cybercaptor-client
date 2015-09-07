@@ -72,6 +72,10 @@ myApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpP
 		'controller' : 'simulController',
 		'templateUrl' : 'view/remediationsSimulation.html'
 	})
+	.when('/dynamicRiskAnalysis', {
+		'controller' : 'dynamicRiskAnalysisController',
+		'templateUrl' : 'view/dynamicRiskAnalysis.html'
+	})
 	.otherwise({
 		redirectTo: '/'
 	});

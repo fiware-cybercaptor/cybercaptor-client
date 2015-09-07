@@ -40,7 +40,10 @@
 */
 routeAppControllers.controller('attackPathController', function ($scope, $http, myConfig, serviceTest) {
                                     
-    var defaultPath = 0;
+    var defaultPath = {
+        ID : 0,
+        Value : 1
+    };
     $scope.valueGauge = 0;
 
     // Defautl view : logical
@@ -82,14 +85,8 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
                         var donnee = transformGraph(valGraph);
                         $scope.attack_graph = donnee;
 
-                        // Request data to build one path
-                        var list = $http.get(myConfig.url + "/attack_path/" + defaultPath)
-                            .success(function(valList) {                                    
-                                $scope.appel($scope.tab[defaultPath]);
-
-                                // Default value in selecter
-                                $scope.valSelecter = $scope.tab[defaultPath];
-                            })  
+                        $scope.appel(defaultPath);
+                        $scope.valSelecter = $scope.tab[defaultPath.ID];
                     })
             })
     };   
@@ -107,6 +104,7 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
         else{
         var appel = $http.get(myConfig.url + "/attack_path/" + numb.ID)
             .success(function(graph){
+
                 var pathGraph = transformPath(graph, $scope.attack_graph);
                 $scope.graphes = pathGraph;
 
@@ -405,6 +403,7 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
         })
         var snortRule = $http.get(myConfig.config + "/snort-rule")
             .success(function(data){
+                console.log(data);
                 $scope.snortRule = data;
         })
         var firewall = $http.get(myConfig.config + "/firewall-rule")
@@ -426,9 +425,25 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
     $scope.sendListHost = function(){
         var send = $http.post(myConfig.url + "/host/list", $scope.listHosts)
             .success(function(data){
+                alert("Data Sent");
             })
     };
 })
+
+
+// ****************************************************
+/**
+*   Dynamic Risk Analysis Controller
+*   @param $scope
+*   @param $http
+*   @param myConfig
+*
+*/
+
+routeAppControllers.controller('dynamicRiskAnalysisController', function($scope, $http, myConfig, serviceTest){
+
+})
+
 
 // ****************************************************
 /**
@@ -488,7 +503,7 @@ routeAppControllers.controller('initController', function($scope, $http, myConfi
     uploader.onCompleteAll = function(){
         console.info('onCompleteAll');
         $scope.show = true;
-        alert("Data sent");
+        alert("Attack graph generated. Ready for analysis.");
     };
     console.info('uploader', uploader);
 
