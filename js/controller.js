@@ -40,7 +40,10 @@
 */
 routeAppControllers.controller('attackPathController', function ($scope, $http, myConfig, serviceTest) {
                                     
-    var defaultPath = 0;
+    var defaultPath = {
+        ID : 0,
+        Value : 1
+    };
     $scope.valueGauge = 0;
 
     // Defautl view : logical
@@ -82,14 +85,8 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
                         var donnee = transformGraph(valGraph);
                         $scope.attack_graph = donnee;
 
-                        // Request data to build one path
-                        var list = $http.get(myConfig.url + "/attack_path/" + defaultPath)
-                            .success(function(valList) {                                    
-                                $scope.appel($scope.tab[defaultPath]);
-
-                                // Default value in selecter
-                                $scope.valSelecter = $scope.tab[defaultPath];
-                            })  
+                        $scope.valSelecter = $scope.tab[defaultPath.ID];
+                        $scope.appel(defaultPath);                        
                     })
             })
     };   
@@ -107,6 +104,7 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
         else{
         var appel = $http.get(myConfig.url + "/attack_path/" + numb.ID)
             .success(function(graph){
+
                 var pathGraph = transformPath(graph, $scope.attack_graph);
                 $scope.graphes = pathGraph;
 
@@ -249,7 +247,6 @@ routeAppControllers.controller('simulController', function ($scope, $http, myCon
 
          var validation = $http.get(myConfig.url + "/attack_path/" + array[1].ID + "/remediation/" + array[0].ID + "/validate")
             .success(function(){
-                console.log("val");
             })
     };
 })
@@ -352,7 +349,12 @@ routeAppControllers.controller('attackPathTopologicalController', function ($sco
 routeAppControllers.controller('configurationController', function ($scope, $http, myConfig, serviceTest) {
     
     var item = { id, value };
-    var values = ["Negligeable", "Minor", "Medium", "Severe", "Catastrophic"];   
+    var values = ["Negligeable", "Minor", "Medium", "Severe", "Catastrophic"]; 
+
+    $scope.choice = {
+        status : 'patch'
+    };
+
     $scope.tabMetric = [ {id, value }]; 
 
     for(var i=0; i< values.length; ++i){
@@ -426,9 +428,51 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
     $scope.sendListHost = function(){
         var send = $http.post(myConfig.url + "/host/list", $scope.listHosts)
             .success(function(data){
+                alert("Data Sent");
             })
     };
 })
+
+
+// ****************************************************
+/**
+*   Dynamic Risk Analysis Controller
+*   @param $scope
+*   @param $http
+*   @param myConfig
+*
+*/
+
+routeAppControllers.controller('dynamicRiskAnalysisController', function($scope, $http, myConfig, serviceTest){
+    // function getAlarm(){
+    //      var alarms = $http.get(){
+    //
+    //      }
+    //    }    
+    //  var timer = setInterval("getAlarm()", 60000);
+
+    var tmp = 0;
+    var id = 0;
+    var timer;
+
+    $scope.tab = [];
+
+    function test(){
+        tmp += 2;
+        id += 1;
+
+        $scope.tst = tmp;
+        var obj = { ID : id, Value : tmp };
+        $scope.$apply(function(){
+            $scope.tab.unshift(obj);
+        })
+    }
+
+    $scope.alertFunc = function(){
+        timer = setInterval(test, 2000);
+    } 
+})
+
 
 // ****************************************************
 /**
@@ -488,7 +532,7 @@ routeAppControllers.controller('initController', function($scope, $http, myConfi
     uploader.onCompleteAll = function(){
         console.info('onCompleteAll');
         $scope.show = true;
-        alert("Data sent");
+        alert("Attack graph generated. Ready for analysis.");
     };
     console.info('uploader', uploader);
 
