@@ -85,8 +85,8 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
                         var donnee = transformGraph(valGraph);
                         $scope.attack_graph = donnee;
 
-                        $scope.appel(defaultPath);
                         $scope.valSelecter = $scope.tab[defaultPath.ID];
+                        $scope.appel(defaultPath);                        
                     })
             })
     };   
@@ -247,7 +247,6 @@ routeAppControllers.controller('simulController', function ($scope, $http, myCon
 
          var validation = $http.get(myConfig.url + "/attack_path/" + array[1].ID + "/remediation/" + array[0].ID + "/validate")
             .success(function(){
-                console.log("val");
             })
     };
 })
@@ -350,7 +349,12 @@ routeAppControllers.controller('attackPathTopologicalController', function ($sco
 routeAppControllers.controller('configurationController', function ($scope, $http, myConfig, serviceTest) {
     
     var item = { id, value };
-    var values = ["Negligeable", "Minor", "Medium", "Severe", "Catastrophic"];   
+    var values = ["Negligeable", "Minor", "Medium", "Severe", "Catastrophic"]; 
+
+    $scope.choice = {
+        status : 'patch'
+    };
+
     $scope.tabMetric = [ {id, value }]; 
 
     for(var i=0; i< values.length; ++i){
@@ -403,7 +407,6 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
         })
         var snortRule = $http.get(myConfig.config + "/snort-rule")
             .success(function(data){
-                console.log(data);
                 $scope.snortRule = data;
         })
         var firewall = $http.get(myConfig.config + "/firewall-rule")
@@ -441,7 +444,33 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
 */
 
 routeAppControllers.controller('dynamicRiskAnalysisController', function($scope, $http, myConfig, serviceTest){
+    // function getAlarm(){
+    //      var alarms = $http.get(){
+    //
+    //      }
+    //    }    
+    //  var timer = setInterval("getAlarm()", 60000);
 
+    var tmp = 0;
+    var id = 0;
+    var timer;
+
+    $scope.tab = [];
+
+    function test(){
+        tmp += 2;
+        id += 1;
+
+        $scope.tst = tmp;
+        var obj = { ID : id, Value : tmp };
+        $scope.$apply(function(){
+            $scope.tab.unshift(obj);
+        })
+    }
+
+    $scope.alertFunc = function(){
+        timer = setInterval(test, 2000);
+    } 
 })
 
 

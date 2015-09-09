@@ -29,43 +29,49 @@
       <p><strong>How it works ?</strong></p>
     </div>
     <div class="panel-body">
-      <p>The window below shows the attack graph.<p>
-      <p>You can switch between the "Logical View" and the "Topological View" with the button.</p>
+      <p>The window below shows the attack graph in a topological view.<p>
+      <p>The panel <em>"Alarm Box"</em> contains differents alarms.</p>
     </div>
   </div>
 </div>
 
 <div class="col-md-9">
-   <div class="panel panel-default">
+  <div class="panel panel-default">
     <div class="panel-heading"> 
-      <strong>Dynamic Risk Analysis</strong>
-      <form name="myForm">
-        <span class="tabulation"> <label><input type="radio" ng-model="view.status" value="Logical">Logical</label>
-        <span class="tabulation"> <label><input type="radio" ng-model="view.status" value="Topological" checked="checked">Topological</label>
-      </form>
+      <p><strong>Dynamic Risk Analysis</strong></p>
     </div>
 
     <div class="panel-body">
-     <div ng-switch="view.status">
-        <div ng-switch-when="Logical">
-          <div class="attack-graph"  graph-drawing></div>
-        </div>
-        <div ng-switch-default="Topological">
-          <div class="attack-graph" ng-controller="attackGraphTopologicalController" graph-topo-drawing></div>
-        </div>
-      </div>
-   </div>
- </div>
+      <div class="attack-graph" ng-controller="attackGraphTopologicalController" graph-topo-drawing></div>
+    </div>
+  </div>
 </div>
 
-<div class="col-md-2">
 
+<div class="col-md-1">
   <div class="panel panel-default">
     <div class="panel-body">
-     <div> Leaf <div id="FirstCircle"></div>  <span class="tabulation"> <IMG src="img/pirate.png"> Pirate </div>
-      <div> And <div id="SecondCircle"></div> <span class="tabulation"> <IMG src="img/target.png"> Target </div>
-      <div> Or <div id="ThirdCircle"></div>  </div>
+      <div> <IMG src="img/pirate.png"><p>Pirate</p><IMG src="img/target.png"><p>Target</p></div>
    </div>
  </div>
 </div>
+
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <p><strong>Alarm Box</strong></p>
+      <span class="tabulation" />
+      <button ng-click="alertFunc()">Try It</button>
+    </div>
+
+    <div id="tot_remed" class="panel-body">
+     <!--  <p>Alarm : {{ tab }}</p> -->
+
+      <ul ng-repeat-start="data in tab"> 
+        Alarm {{ data.ID }} : {{ data.Value }} 
+       </ul>
+      <ul ng-repeat-end></ul>
+    </div>
+  </div>
 </div>
+

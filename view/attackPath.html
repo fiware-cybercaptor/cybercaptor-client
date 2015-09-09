@@ -31,10 +31,10 @@
 
     <div class="panel-body">
       <p>The main window shows the attack path.</p> 
-      <p>You can select the path that you want to visualize with the button in the panel "Selection".</p>
-      <p>The attrition level is visible by a gauge in the panel "Attrition Level".</p>
-      <p>All the remediations for the selected path are listed in the panel "Remediations".</p>
-      <p>You can simulate the application of a remediation on the whole attack graph by clicking on the button "Simulate".</p>
+      <p>You can select the path that you want to visualize with the button in the panel <em>"Selection"</em>.</p>
+      <p>The attrition level is visible by a gauge in the panel <em>"Attrition Level"</em>.</p>
+      <p>All the remediations for the selected path are listed in the panel <em>"Remediations"</em>.</p>
+      <p>You can simulate the application of a remediation on the whole attack graph by clicking on the button <em>"Simulate"</em>.</p>
     </div>
   </div>
 </div>
@@ -63,37 +63,38 @@
 </div>
 
 
-    <div class="col-md-2">
+<div class="col-md-2">
 
-      <div class="panel panel-default">
-        <div class="panel-heading">Selection</div>
-        <div class="panel-body" class="texte">
-          <p>Select the path : <select ng-init="valSelecter = tab" ng-model="valSelecter" ng-options="item.Value for item in tab" ng-click="appel(valSelecter)"> </select> </p>
-        </div>
-      </div>	
+  <div class="panel panel-default">
+    <div class="panel-heading">Selection</div>
+    <div class="panel-body" class="texte">
+      <p>Select the path : <select ng-init="valSelecter = tab" ng-model="valSelecter" ng-options="item.Value for item in tab" ng-click="appel(valSelecter)"> </select> </p>
+    </div>
+  </div>	
 
-      <div class="panel panel-default">
-        <div class="panel-heading">Attrition Level
-        </div>
-        <div id="selected" class="panel-body">
-          <p style="text-align:center">
-            <span ng-class="{green: graphes.color == 'green', yellow: graphes.color == 'yellow', orange: graphes.color == 'orange', red: graphes.color == 'red', black: graphes.color == 'black'}"> <b> {{ graphes.text }} </b> </span>
-          </p>
-          <div ng-controller="RadialGaugeDemoCtrl">
-            <span width="160" ng-radial-gauge ranges="ranges" value="valueGauge" value-unit="unit" precision="precision" lower-limit="lowerLimit" upper-limit="upperLimit"></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div> Leaf <div id="FirstCircle"></div>  <span class="tabulation"> <IMG src="img/pirate.png"> Pirate </div>
-          <div> And <div id="SecondCircle"></div> <span class="tabulation"> <IMG src="img/target.png"> Target </div>
-          <div> Or <div id="ThirdCircle"></div>  </div>
-        </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Attrition Level
+    </div>
+    <div id="selected" class="panel-body">
+      <p style="text-align:center">
+        <span ng-class="{green: graphes.color == 'green', yellow: graphes.color == 'yellow', orange: graphes.color == 'orange', red: graphes.color == 'red', black: graphes.color == 'black'}"> <b> {{ graphes.text }} </b> </span>
+      </p>
+      <div ng-controller="RadialGaugeDemoCtrl">
+        <span width="160" ng-radial-gauge ranges="ranges" value="valueGauge" value-unit="unit" precision="precision" lower-limit="lowerLimit" upper-limit="upperLimit"></span>
       </div>
     </div>
   </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div> Leaf <div id="FirstCircle"></div>  <span class="tabulation"> <IMG src="img/pirate.png"> Pirate </div>
+      <div> And <div id="SecondCircle"></div> <span class="tabulation"> <IMG src="img/target.png"> Target </div>
+      <div> Or <div id="ThirdCircle"></div>  </div>
+    </div>
+  </div>
+
+</div>
+
 
 <div id="reme">
     <div class="row">
