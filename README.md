@@ -7,40 +7,41 @@ CyberCAPTOR is an  implementation of the Cyber Security Generic Enabler, the fut
 
 ## Table of Contents
 
-- [CyberCAPTOR CLient](#cybercaptor-client)
-	- [Development Version Installation](#development-version-installation)
-		- [Prerequisite](#prerequisite)
-		- [Installation](#installation)
-		- [Test](#test)
+- [Development Version Installation](#development-version-installation)
+	- [Prerequisite](#prerequisite)
+	- [Installation](#installation)
+	- [Test](#test)
 
-## Development Version Installation
+- [Docker Deployment] (voir fiware server)
 
-### Prerequisite
+# Development Version Installation
+
+## Prerequisite
 - Ubuntu
-- Chromium
 - [Python](https://www.python.org/)
+- Chromium
 
-### Installation
+## Installation
 
 1) Get sources from GitHub
-
-2) Run a server. I use Python but you can employ your favorite technlogy.
-
-Use command line
 ```
-python -m SimpleHTTPServer
+git clone https://github.com/fiware-cybercaptor/cybercaptor-client.git
 ```
 
-### Test
+2) Run a web server. For example, Python can be used but you can use your favorite technlogy.
 
-Run your browser, I use Chromium. Then, go on URL :
+With Python:
+```
+cd cybercaptor-client 
+python -m SimpleHTTPServer 8000
+```
+
+## Test
+
+Run your browser, for example Chromium, to go on URL :
 ```
 localhost:8000
 ```
 
-If you see a window with a title : CyberCAPTOR Client and a tab : Initialization. The client has been properly installed.
-
-
-# cybercaptor-client
-Cyber Security Monitoring Tool based on Attack Graphs - Client (Display)
+If you see a window with the title : *CyberCAPTOR Client* and a tab : *Initialization*. The CyberCAPTOR client has been properly installed.
 

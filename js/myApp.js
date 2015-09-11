@@ -52,7 +52,7 @@ myApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpP
 	$httpProvider.defaults.useXDomain = true;
 
 	$routeProvider
-	.when('/', {
+	.when('/welcome', {
 		'controller': 'initController', 
 		'templateUrl': 'view/welcome.html'
 	})
@@ -77,7 +77,7 @@ myApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpP
 		'templateUrl' : 'view/dynamicRiskAnalysis.html'
 	})
 	.otherwise({
-		redirectTo: '/'
+		redirectTo: '/welcome'
 	});
 }]);
 
