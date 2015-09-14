@@ -129,7 +129,7 @@ This file contains all [filter](https://docs.angularjs.org/api/ng/filter/filter)
 ### Lib
 
 #### Transform
-Transform has differents methods to modify data to increase the calculation.
+Transform has differents methods to modify data to simplify the calculations and the visualizations.
 
 
 
