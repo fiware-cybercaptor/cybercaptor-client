@@ -67,9 +67,24 @@
     <div id="tot_remed" class="panel-body">
      <!--  <p>Alarm : {{ tab }}</p> -->
 
-      <ul ng-repeat-start="data in tab"> 
-        Alarm {{ data.ID }} : {{ data.Value }} 
-       </ul>
+      <!-- alarm {{ alertIDMEF }} <br /> -->
+
+      <ul ng-repeat-start="data in alertIDMEF.alerts"> 
+        <br /> <p>{{ tst }} <span class="tabulation" /> <strong>Name :</strong> {{ data.name }} <strong>Date: </strong> {{ data.date }} <span class="tabulation" /> <strong>CVE :</strong> <a href="{{ data.CVEs[0].link }}"> {{ data.CVEs[0].CVE }}</a></p>
+
+        <!-- <p><strong>Name :</strong> {{ data.name }} <strong>at</strong> {{ data.date }} <strong>it</strong> {{ tst }} <strong> ago</strong> <span class="tabulation" /> <strong>CVE :</strong> <a href="{{ data.CVEs[0].link }}"> {{ data.CVEs[0].CVE }}</a></p> -->
+
+        <li ng-repeat-start="a in data.targets">
+          <p><strong>Targets</strong> : {{ a }}</p>
+        </li>
+        <ul ng-repeat-end></ul>
+
+        <li ng-repeat-start="a in data.sources">
+          <p><strong>Sources</strong> : {{ a }}</p>
+        </li>
+        <ul ng-repeat-end></ul>
+
+      </ul>
       <ul ng-repeat-end></ul>
     </div>
   </div>

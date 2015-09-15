@@ -451,6 +451,25 @@ routeAppControllers.controller('dynamicRiskAnalysisController', function($scope,
     //    }    
     //  var timer = setInterval("getAlarm()", 60000);
 
+    var time = Date.now();
+    var diffTime = 0;
+    var tst = 0;
+    console.log(time);
+
+    var alarms = $http.get(myConfig.url + "/idmef/alerts")
+        .success(function(data){
+            console.log(data);
+            $scope.alertIDMEF = data;
+
+            console.log(data.alerts[0].timestamp);
+            diffTime = time - data.alerts[0].timestamp;
+            console.log(diffTime);
+            transformTime(diffTime);
+            $scope.diffTime = diffTime;
+            tst = transformTime(diffTime);
+            $scope.tst = tst;
+    });
+
     var tmp = 0;
     var id = 0;
     var timer;
