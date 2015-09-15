@@ -7,40 +7,65 @@ CyberCAPTOR is an  implementation of the Cyber Security Generic Enabler, the fut
 
 ## Table of Contents
 
-- [CyberCAPTOR CLient](#cybercaptor-client)
-	- [Development Version Installation](#development-version-installation)
-		- [Prerequisite](#prerequisite)
-		- [Installation](#installation)
-		- [Test](#test)
+- [Development Version Installation](#development-version-installation)
+	- [Prerequisite](#prerequisite)
+	- [Installation](#installation)
+	- [Test](#test)
 
-## Development Version Installation
+- [Docker Version Deployment](#docker-version-deployment)
+	- [Build container](#build-container) *(optional)*
+	- [Run container](#run-container)
 
-### Prerequisite
+# Development Version Installation
+
+## Prerequisite
 - Ubuntu
-- Chromium
 - [Python](https://www.python.org/)
+- Chromium
 
-### Installation
+## Installation
 
 1) Get sources from GitHub
-
-2) Run a server. I use Python but you can employ your favorite technlogy.
-
-Use command line
 ```
-python -m SimpleHTTPServer
+git clone https://github.com/fiware-cybercaptor/cybercaptor-client.git
 ```
 
-### Test
+2) Run a web server. For example, Python can be used but you can use your favorite technlogy.
 
-Run your browser, I use Chromium. Then, go on URL :
+With Python:
+```
+cd cybercaptor-client 
+python -m SimpleHTTPServer 8000
+```
+
+## Test
+
+Run your browser, for example Chromium, to go on URL :
 ```
 localhost:8000
 ```
 
-If you see a window with a title : CyberCAPTOR Client and a tab : Initialization. The client has been properly installed.
+If you see a window with the title : *CyberCAPTOR Client* and a tab : *Initialization*. The CyberCAPTOR client has been properly installed.
 
 
-# cybercaptor-client
-Cyber Security Monitoring Tool based on Attack Graphs - Client (Display)
+# Docker Version Deployment
+
+## Build container (optional)
+```
+docker build -t cybercaptor-client
+```
+
+## Run container
+If you want to run the client in foreground, launch the following command:
+```
+docker run --rm --name cybercaptor-client -p 8888:80 fiwarecybercaptor/cybercaptor-client
+```
+
+You need a CyberCAPTOR Server to test CyberCAPTOR Client.
+```
+docker run --name cybercaptor-server -p 8888:8080 fiwarecybercaptor/cybercaptor-server
+```
+
+More details about building and/or running the Docker container can be found in [container/README.md](https://github.com/fiware-cybercaptor/cybercaptor-server/blob/master/container/README.md)
+
 
