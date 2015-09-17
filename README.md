@@ -16,6 +16,10 @@ CyberCAPTOR is an  implementation of the Cyber Security Generic Enabler, the fut
 	- [Build container](#build-container) *(optional)*
 	- [Run container](#run-container)
 
+- [Utilization](#utilisation)
+
+- [Developpement](#developpement)
+
 # Development Version Installation
 
 ## Prerequisite
@@ -50,6 +54,9 @@ localhost:8000
 If you see a window with the title : *CyberCAPTOR Client* and a tab : *Initialization*. The CyberCAPTOR client has been properly installed.
 
 
+For more details, read the documentation [Installation And adminsitration Manual](https://github.com/fiware-cybercaptor/cybercaptor-client/blob/master/doc/InstallationAndAdministrationManual.md)
+
+
 # Docker Version Deployment
 
 ## Build container (optional)
@@ -69,5 +76,16 @@ docker run --name cybercaptor-server -p 8888:8080 fiwarecybercaptor/cybercaptor-
 ```
 
 More details about building and/or running the Docker container can be found in [container/README.md](https://github.com/fiware-cybercaptor/cybercaptor-server/blob/master/container/README.md)
+
+# Utilization
+A panel with explanation is present at the top of the each pages.
+
+For more details, please check up [User Manual](https://github.com/fiware-cybercaptor/cybercaptor-client/blob/master/doc/UserAndProgrammersManual.md)
+
+# Developpement
+If you want to develop other features, please, fell be free to do this.
+
+For more details, read the code commented and the [Programmers Manual](https://github.com/fiware-cybercaptor/cybercaptor-client/blob/master/doc/UserAndProgrammersManual.md) 
+
 
 
