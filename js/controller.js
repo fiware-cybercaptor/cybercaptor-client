@@ -444,33 +444,29 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
 */
 
 routeAppControllers.controller('dynamicRiskAnalysisController', function($scope, $http, myConfig, serviceTest){
-    // function getAlarm(){
-    //      var alarms = $http.get(){
-    //
-    //      }
-    //    }    
-    //  var timer = setInterval("getAlarm()", 60000);
+    var time = Date.now();
+    var diffTime = 0;
+    var res = 0;
+    var tab = [];
+    $scope.tabAlert = { tab: tab };
 
-    var tmp = 0;
-    var id = 0;
-    var timer;
 
-    $scope.tab = [];
+    function getAlarm(){
+        var alarms = $http.get(myConfig.url + "/idmef/alerts")
+            .success(function(data){
+                // Stock data
+                tab.unshift(data);
 
-    function test(){
-        tmp += 2;
-        id += 1;
-
-        $scope.tst = tmp;
-        var obj = { ID : id, Value : tmp };
-        $scope.$apply(function(){
-            $scope.tab.unshift(obj);
-        })
-    }
-
+                // Convert timestamp
+                diffTime = time - data.alerts[0].timestamp;
+                res = transformTime(diffTime);
+                $scope.res = res;
+            })
+       }    
     $scope.alertFunc = function(){
-        timer = setInterval(test, 2000);
-    } 
+        var timer = setInterval(getAlarm, 3000);
+
+    }   
 })
 
 

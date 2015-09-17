@@ -19,6 +19,8 @@ CyberCAPTOR is an  implementation of the Cyber Security Generic Enabler, the fut
 # Development Version Installation
 
 ## Prerequisite
+In order to execute the CyberCAPTOR-Client, it is needed to have previously installed the following software in the machine:
+
 - Ubuntu
 - [Python](https://www.python.org/)
 - Chromium
