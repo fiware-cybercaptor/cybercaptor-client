@@ -55,7 +55,7 @@ svg{
   background-color: white;
   font-size: 25px;
 }
-#FirstCircle{
+#leaf{
   background: #FF8000;
   border-radius: 50%;
   width: 20px;
@@ -63,7 +63,7 @@ svg{
   float:left;
   margin-right:10px;
 }
-#SecondCircle{
+#and{
   background: #0431B4;
   border-radius: 50%;
   width: 20px;
@@ -71,7 +71,7 @@ svg{
   float:left;
   margin-right:10px;
 }
-#ThirdCircle{
+#or{
   background: #81BEF7;
   border-radius: 50%;
   width: 20px;
@@ -79,7 +79,7 @@ svg{
   float:left;
   margin-right:10px;
 }
-#FirstCircleCorrected{
+#leafCorrected{
   background: #FF8000;
   border : 3px solid green;
   border-radius: 50%;
@@ -88,7 +88,7 @@ svg{
   float:left;
   margin-right:10px;
 }
-#SecondCircleCorrected{
+#andCorrected{
   background: #0431B4;
   border : 3px solid green;
   border-radius: 50%;
@@ -97,9 +97,25 @@ svg{
   float:left;
   margin-right:10px;
 }
-#ThirdCircleCorrected{
+#orCorrected{
   background: #81BEF7;
   border : 3px solid green;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  float:left;
+  margin-right:10px;
+}
+#wholesome{
+  background: lightgrey;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  float:left;
+  margin-right:10px;
+}
+#attacked{
+  background: red;
   border-radius: 50%;
   width: 20px;
   height: 20px;

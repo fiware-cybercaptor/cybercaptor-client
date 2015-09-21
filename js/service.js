@@ -48,4 +48,12 @@ angular.module('myModule', []).service('serviceTest', function(){
   this.getArray = function(){
     return array;
   }
+
+  this.setGraph = function(graph){
+    savedGraph = graph;
+  };
+  this.getGraph = function(){
+    return savedGraph;
+  };
+
 });

@@ -274,6 +274,7 @@ routeAppControllers.controller('attackGraphTopologicalController', function ($sc
     };   
 })
 
+
 // ****************************************************
 
 /**
@@ -449,6 +450,18 @@ routeAppControllers.controller('dynamicRiskAnalysisController', function($scope,
     var res = 0;
     var tab = [];
     $scope.tabAlert = { tab: tab };
+    //var fake = {};
+
+    $scope.init = function(){
+
+        var topological = $http.get(myConfig.url + "/attack_graph/topological")
+            .success(function(data) {
+                console.log(data);
+                $scope.tmpData = data;
+                var attackTopoGraph = transformGraphTopoDRA(data);
+                $scope.graphes = attackTopoGraph;
+            })    
+    };   
 
 
     function getAlarm(){
@@ -465,8 +478,20 @@ routeAppControllers.controller('dynamicRiskAnalysisController', function($scope,
        }    
     $scope.alertFunc = function(){
         var timer = setInterval(getAlarm, 3000);
-
     }   
+
+    $scope.dra = function(data){
+        var graphDRA = transformGraphTopoDRA($scope.tmpData, data);
+        $scope.graphes = graphDRA;
+
+        var reme = data.dynamic_remediations;
+        $scope.draRemed = reme;
+    };
+
+    $scope.displayModal = function(){
+        $("#myModal").modal("show");
+    }
+
 })
 
 
