@@ -30,7 +30,9 @@
     </div>
     <div class="panel-body">
       <p>The window below shows the attack graph in a topological view.<p>
-      <p>The panel <em>"Alarm Box"</em> contains differents alarms.</p>
+      <p>Click on "<em>Retrieve Alerts</em>" to start the service.</p>
+      <p>All alarms detected will be show in the panel <em>"Alarm Box"</em> with their differentes properties.</p>
+      <p>Click on "<em>Visualize</em>" to see targets and sources involved in the selected attack.</p>
     </div>
   </div>
 </div>
@@ -42,16 +44,17 @@
     </div>
 
     <div class="panel-body">
-      <div class="attack-graph" ng-controller="attackGraphTopologicalController" graph-topo-drawing></div>
+      <div class="attack-graph" graph-drawing-dra></div>
     </div>
   </div>
 </div>
 
 
-<div class="col-md-1">
+<div class="col-md-2">
   <div class="panel panel-default">
     <div class="panel-body">
-      <div> <IMG src="img/pirate.png"><p>Pirate</p><IMG src="img/target.png"><p>Target</p></div>
+      <div> Wholesome Host <div id="wholesome"></div></div>
+      <div> Attacked Host <div id="attacked"></div></div>
    </div>
  </div>
 </div>
@@ -59,9 +62,7 @@
 <div class="col-md-12">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <p><strong>Alarm Box</strong></p>
-      <span class="tabulation" />
-      <button ng-click="alertFunc()">Try It</button>
+      <p><strong>Alarm Box</strong><span class="tabulation" /><button ng-click="alertFunc()"><strong>Retrieve Alerts</strong></button></p>
     </div>
 
     <div id="tot_remed" class="panel-body">
@@ -69,7 +70,7 @@
       <ul ng-repeat-start="data in tabAlert.tab"> 
         <ul ng-repeat-start="data in data.alerts">
 
-          <br /> <p>{{ res }} <span class="tabulation" /> <strong>Name :</strong> {{ data.name }} <span class="tabulation" /> <strong>Date: </strong> {{ data.date }} <span class="tabulation" /> <strong>CVE :</strong> <a href="{{ data.CVEs[0].link }}"> {{ data.CVEs[0].CVE }}</a></p>
+          <br /> <p>{{ res }} <span class="tabulation" /> <strong>Name :</strong> {{ data.name }} <span class="tabulation" /> <strong>Date: </strong> {{ data.date }} <span class="tabulation" /> <strong>CVE :</strong> <a href="{{ data.CVEs[0].link }}"> {{ data.CVEs[0].CVE }}</a> <span class="tabulation" /> <button ng-click="dra(data)">Visualize</button> <button type="button" ng-click="displayModal()">OpenModal</button></p>
 
           <div class="row">
 
@@ -95,6 +96,43 @@
       </ul>
       <ul ng-repeat-end></ul>
     </div>
+  </div>
+</div>
+
+<!-- Modal content -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Remediations</h4>
+      </div>
+      <div class="modal-body">
+        <ul ng-repeat-start="data in draRemed">
+          <li ng-repeat-start="a in data">
+            <p>Type : {{ a.type }}</p>
+            <p>Action : {{ a.action }}</p>
+            <p>IP tables rule : {{ a.iptables_rule }}</p>
+            <p>Source IP : {{ a.source_ip }}</p>
+            <p>Source Mask : {{ a.source_mask}}</p>
+            <p>Linux black hole rule : {{ a.linux_black_hole_rule }}</p>
+
+            <li ng-repeat-start="b in a track by $index" ng-repeat-end>
+                      {{ b }} 
+            </li>
+            </br>
+          </li>
+          <ul ng-repeat-end></ul>
+        </ul>
+        <ul ng-repeat-end></ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
   </div>
 </div>
 

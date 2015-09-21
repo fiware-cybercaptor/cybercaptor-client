@@ -60,8 +60,8 @@ myApp.directive('graphDrawing', function() {
                 if(graphes != undefined)
                 {
                     var force = d3.layout.force()
-                        .charge(-150)
-                        .linkDistance(30)
+                        .charge(-300)
+                        .linkDistance(50)
                         .friction(0.3)
                         .gravity(0.15)
                         .size([width, height])
@@ -182,8 +182,8 @@ myApp.directive('graphTopoDrawing', function() {
         link: function (scope, element) {
 
             var margin = {top: -10, right: -10, bottom: -10, left: -10};
-            var width = 1175 - margin.left - margin.right;
-            var height = 400 - margin.top - margin.bottom;
+            var width = 1000 - margin.left - margin.right;
+            var height = 300 - margin.top - margin.bottom;
 
             var color = d3.scale.category20();
             
@@ -202,10 +202,10 @@ myApp.directive('graphTopoDrawing', function() {
                 if(graphes != undefined)
                 {
                     var force = d3.layout.force()
-                        .charge(-150)
-                        .linkDistance(30)
-                        .friction(0.3)
-                        .gravity(0.15)
+                        .charge(-400)
+                        .linkDistance(200)
+                        .friction(0.4)
+                        .gravity(0.05)
                         .size([width, height])
                         .nodes(graphes.nodes)
                         .links(graphes.links)
@@ -254,7 +254,11 @@ myApp.directive('graphTopoDrawing', function() {
                     var tip = d3.tip()
                         .attr('class', 'd3-tip')
                         .offset([-10, 0])
-                        .html(function (d) { return "Name : " + d.Name; })
+                        .html(function (d) { return "Name : " + d.Name + 
+                                                "<br />" + "Source : " + d.Source +
+                                                "<br />" + "Target : " + d.Target +
+                                                "<br />" + "IP : " + d.IP;
+                                            })
                         svg.call(tip);
                     //---End "ToolTip"---
 
@@ -485,6 +489,164 @@ myApp.directive('graphSimulDrawing', function() {
                         .attr("refY", 0)
                         .attr("markerWidth", 8)
                         .attr("markerHeight", 8)
+                        .attr("orient", "auto")
+                        .append("path")
+                        .attr("d", "M0,-5L10,0L0,5 L10,0 L0, -5")
+                        .style("stroke", "#4679BD")
+                        .style("opacity", "0.5");
+                    //---End Arrow----------
+                 });
+                }
+            });
+        }
+    }
+})
+
+/**
+*   Graph Directive for Dynamic Risk Analysis
+*
+*   Draw & Display graph
+*/
+myApp.directive('graphDrawingDra', function() {
+
+    return {
+        restrict: 'A',
+
+        link: function (scope, element, attrs) {
+
+            var margin = {top: -10, right: -10, bottom: -10, left: -10};
+            var width = 1175 - margin.left - margin.right;
+            var height = 350 - margin.top - margin.bottom;
+
+            var color = d3.scale.category20();
+            
+            var graphDatas = {
+                links : [],
+                nodes : []
+            };         
+
+            scope.init();
+
+
+            // $watch update graph if data in $scope.grapheDatas are modified
+            scope.$watch('graphes', function (graphes) {
+
+                graphes = scope.graphes;
+
+                console.log("directive");
+
+                if(graphes != undefined)
+                {
+                    var force = d3.layout.force()
+                        .charge(-400)
+                        .linkDistance(200)
+                        .friction(0.4)
+                        .gravity(0.09)
+                        .size([width, height])
+                        .nodes(graphes.nodes)
+                        .links(graphes.links)
+                        .start();
+
+                     //---Insert "Pin Down" -------
+                    var node_drag = d3.behavior.drag()
+                         .on("dragstart", dragstart)
+                         .on("drag", dragmove)
+                         .on("dragend", dragend);
+
+                    function dragstart(d, i) {
+                        force.stop() // stops the force auto positioning before you start dragging
+                    }
+
+                    function dragmove(d, i) {
+                        d.px += d3.event.dx;
+                        d.py += d3.event.dy;
+                        d.x += d3.event.dx;
+                        d.y += d3.event.dy; 
+                    }
+
+                    function dragend(d, i) {
+                        d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
+                        force.resume();
+                    }
+
+                    function releasenode(d) {
+                        d.fixed = false; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
+                    }
+                    //---End "Pin Down" ------
+
+                    // Remove svg located in tag "attack-graph"
+                    d3.selectAll(".attack-graph > svg").remove(); 
+
+                    // Initialize SVG
+                    var svg = d3.selectAll(".attack-graph").append("svg")
+                        .attr("width", width)
+                        .attr("height", height)
+                        .append("g")
+                        .attr("transform", "translate(" + margin.left + "," + margin.right + ")")
+
+                    //---Insert "ToolTip"------
+                    // Set up tooltip
+                    var tip = d3.tip()
+                        .attr('class', 'd3-tip')
+                        .offset([-10, 0])
+                        .html(function(d) { return "Name : " + d.Name + 
+                                                "<br />" + "IP : " + d.IP;
+                                            })
+                        svg.call(tip);
+                    //---End "ToolTip"---
+
+                    // Initialize Line (Arc)
+                    var link = svg.selectAll(".link")
+                        .data(scope.graphes.links)
+                        .enter().append("line")
+                        .attr("class", "link")
+                        .style("stroke", function(d){ return d.color; })
+                        .style("stroke-width", function(d){ return d.width; })
+                        .style("marker-end", "url(#suit)"); // Added "Arrow"
+
+                    // Initialize Node (Vertex)
+                    var node = svg.selectAll(".node")
+                        .data(scope.graphes.nodes)
+                        .enter().append("g");              // Added "ToolTip"
+
+                    node.append("circle")
+                        .attr("class", "node")
+                        .attr("r", function(d){ return d.Size; })
+                        .style("fill", function(d) { return d.Visu; })
+                        .style("opacity", function(d){ return d.Opacity; })
+                        .call(force.drag)
+                        .call(node_drag)                        // Added "Pin Down"
+                        .on('mouseover', tip.show)              // Added "ToolTip"
+                        .on('mouseout', tip.hide);
+
+                    // Display "Name"
+                    node.append("text")
+                        .attr("x", 30)
+                        .attr("dy", ".35em")
+                        .attr("font-family", "sans-serif")
+                        .attr("font-size", "20px")
+                        .attr("font-weight", "bold")
+                        .attr("fill", "grey")
+                        .text(function(d){ return d.Name; });
+
+                    force.on("tick", function() {
+                        link.attr("x1", function(d) { return d.source.x; })
+                        .attr("y1", function(d) { return d.source.y; })
+                        .attr("x2", function(d) { return d.target.x; })
+                        .attr("y2", function(d) { return d.target.y; });
+
+                    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+                    //---Arrow-------
+                    svg.append("defs").selectAll("marker")
+                        .data(["suit", "licensing", "resolved"])
+                        .enter().append("marker")
+                        .attr("id", function(d) { return d; })
+                        .attr("viewBox", "0 -5 10 10")
+                        .attr("refX", 17)
+                        .attr("refY", 0)
+                        .attr("markerWidth", 10)
+                        .attr("markerHeight", 10)
                         .attr("orient", "auto")
                         .append("path")
                         .attr("d", "M0,-5L10,0L0,5 L10,0 L0, -5")
