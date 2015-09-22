@@ -70,7 +70,12 @@
       <ul ng-repeat-start="data in tabAlert.tab"> 
         <ul ng-repeat-start="data in data.alerts">
 
-          <br /> <p>{{ res }} <span class="tabulation" /> <strong>Name :</strong> {{ data.name }} <span class="tabulation" /> <strong>Date: </strong> {{ data.date }} <span class="tabulation" /> <strong>CVE :</strong> <a href="{{ data.CVEs[0].link }}"> {{ data.CVEs[0].CVE }}</a> <span class="tabulation" /> <button ng-click="dra(data)">Visualize</button> <button type="button" ng-click="displayModal()">OpenModal</button></p>
+          <br /> <p>{{ res }} ago <span class="tabulation" /> <strong>Name :</strong> {{ data.name }} <span class="tabulation" /> <strong>Date: </strong> {{ data.date }} <span class="tabulation" /> <strong>CVE :</strong> <a href="{{ data.CVEs[0].link }}"> {{ data.CVEs[0].CVE }}</a> <span class="tabulation" /> <button ng-click="dra(data)">Visualize</button> <span class="tabulation" /> <button type="button" ng-click="displayModal()">Remediations</button> </p>
+
+<!--           <ul ng-repeat-start="a in data.CVEs">
+            {{ a.CVE }}
+          </ul>
+          <ul ng-repeat-end></ul> -->
 
           <div class="row">
 
@@ -109,25 +114,43 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Remediations</h4>
       </div>
-      <div class="modal-body">
-        <ul ng-repeat-start="data in draRemed">
-          <li ng-repeat-start="a in data">
-            <p>Type : {{ a.type }}</p>
-            <p>Action : {{ a.action }}</p>
-            <p>IP tables rule : {{ a.iptables_rule }}</p>
-            <p>Source IP : {{ a.source_ip }}</p>
-            <p>Source Mask : {{ a.source_mask}}</p>
-            <p>Linux black hole rule : {{ a.linux_black_hole_rule }}</p>
 
-            <li ng-repeat-start="b in a track by $index" ng-repeat-end>
-                      {{ b }} 
+      <div class="modal-body">
+        <ul ng-repeat-start="(key, data) in draRemed">
+          <p><strong>Remediation {{ key+1 }}</strong></p>
+          <li ng-repeat-start="a in data">
+            <div ng-switch="a.type">
+              <div ng-switch-when="PacketRedirectionRemediation">
+                <p><strong>Type : </strong>Packet Redirection Remediation</p>
+                <p><strong>Action : </strong>{{ a.action }}</p>
+                <p><strong>Source IP : </strong>{{ a.source_ip }}</p>
+                <p><strong>Source Mask : </strong>{{ a.source_mask}}</p>
+                <p><strong>IP tables rule : </strong><pre>{{ a.iptables_rule }}</pre></p>
+                <p><strong>Linux black hole rule : </strong><pre>{{ a.linux_black_hole_rule }}</pre></p>
+                </br>
+              </div>
+
+              <div ng-switch-when="DynamicFirewallRule">
+                <p><strong>Type : </strong>Dynamic Firewall Rule</p>
+                <p><strong>Action : </strong>{{ a.action }}</p>
+                <p><strong>Protocol : </strong>{{ a.protocol }}</p>
+                <p><strong>Source IP : </strong>{{ a.source_ip }}</p>
+                <p><strong>Source Mask : </strong>{{ a.source_mask }}</p>
+                <p><strong>Source port : </strong>{{ a.source_port }}</p>
+                <p><strong>Destination IP : </strong>{{ a.destination_ip }}</p>
+                <p><strong>Destination Mask : </strong>{{ a.destination_mask }}</p>
+                <p><strong>Destination Port : </strong>{{ a.destination_port }}</p>
+                <p><strong>IP Tables Rule : </strong><pre>{{ a.iptables_rule }}</pre></p>
+                </br>
+              </div>
             </li>
-            </br>
-          </li>
+            <ul ng-repeat-end></ul>
+          </ul>
           <ul ng-repeat-end></ul>
-        </ul>
-        <ul ng-repeat-end></ul>
+
       </div>
+    </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
