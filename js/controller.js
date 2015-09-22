@@ -475,17 +475,22 @@ routeAppControllers.controller('dynamicRiskAnalysisController', function($scope,
                 res = transformTime(diffTime);
                 $scope.res = res;
             })
-       }    
+    }    
+
     $scope.alertFunc = function(){
         var timer = setInterval(getAlarm, 3000);
-    }   
+    };
 
     $scope.dra = function(data){
+
         var graphDRA = transformGraphTopoDRA($scope.tmpData, data);
         $scope.graphes = graphDRA;
 
         var reme = data.dynamic_remediations;
+        console.log(reme);
         $scope.draRemed = reme;
+
+        console.log($scope);
     };
 
     $scope.displayModal = function(){
