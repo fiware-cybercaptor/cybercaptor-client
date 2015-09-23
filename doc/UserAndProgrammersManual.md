@@ -32,7 +32,9 @@ CyberCAPTOR is an  implementation of the Cyber Security Generic Enabler, the fut
 
 
 # Introduction
-this is the User and Programmer Guide for the CyberCAPTOR Client Side.
+This is the User and Programmer Guide for the CyberCAPTOR Client Side.
+
+We used dataSet.xml for the differents illustrations.
 
 # User Guide
 
@@ -42,6 +44,8 @@ This page initializes the server with your data.
 Use the button to select your topology file. When it is loaded on the queue file, click on "Upload All" for upload all your data in the server. If your data are totally loaded, the progress bar is fulfilled and a message appears to certified the good reception. 
 
 Now, the server has your data and CyberCAPTOR is ready.
+
+![Initialization page](/img/manual/initial.png)
 
 
 ## Configuration
@@ -56,7 +60,7 @@ The other panel lists differents parameters for the remediation cost calculation
 ## Attack Graph
 This page displays the attack graph of your information system.
 
-By default, the graph is displayed in a logical view but, you can switch in a topological view in selecting the mode.
+By default, the graph is displayed in a topological view but, you can switch in a logical view in selecting the mode.
 If you put your cursor above a node, you can see his informations.
 You can manipulate the nodes by drag and drop.
 
