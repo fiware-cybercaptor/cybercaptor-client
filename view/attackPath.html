@@ -51,11 +51,11 @@
 
     <div class="panel-body">
       <div ng-switch="view.status">
-        <div ng-switch-default="Logical">
-          <div class="attack-graph"  graph-drawing></div>
-        </div>
-        <div ng-switch-when="Topological">
+        <div ng-switch-default="Topological">
           <div class="attack-graph" ng-controller="attackPathTopologicalController" graph-topo-drawing></div>
+        </div>
+        <div ng-switch-when="Logical">
+          <div class="attack-graph"  graph-drawing></div>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">Selection</div>
     <div class="panel-body" class="texte">
-      <p>Select the path : <select ng-init="valSelecter = tab" ng-model="valSelecter" ng-options="item.Value for item in tab" ng-click="appel(valSelecter)"> </select> </p>
+      <p>Select the path : <select ng-model="valSelecter" ng-options="item.Value for item in tab" ng-click="appel(valSelecter)"> </select> </p>
     </div>
   </div>	
 
@@ -86,12 +86,26 @@
   </div>
 
   <div class="panel panel-default">
-    <div class="panel-body">
-      <div> Leaf <div id="leaf"></div>  <span class="tabulation"> <IMG src="img/pirate.png"> Pirate </div>
-      <div> And <div id="and"></div> <span class="tabulation"> <IMG src="img/target.png"> Target </div>
-      <div> Or <div id="or"></div>  </div>
-    </div>
-  </div>
+    <div ng-switch="view.status">
+
+      <div ng-switch-when="Topological">
+        <div class="panel-body">
+         <div><IMG src="img/pirate.png"><p><strong>Pirate</strong></p></div>
+          <div><IMG src="img/target.png"><p><strong>Target</strong></p></div>
+        </div>
+      </div>
+
+      <div ng-switch-when="Logical">
+        <div class="panel-body">
+          <div id="vulnerability"></div><p><strong>Vulnerability</strong></p>
+          <div id="leaf"></div><p><strong>Leaf</strong></p>  
+          <div id="and"></div><p><strong>And</strong></p>
+          <div id="or"></div><p><strong>Or</strong></p>
+        </div>
+      </div>
+
+   </div><!-- ng-switch -->
+ </div><!-- panel panel default -->
 
 </div>
 

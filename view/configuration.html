@@ -63,73 +63,56 @@
       </div>
     </div>
 
-    <div class="col-md-5">
+    <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">
-          <strong>Global</strong> <span class="tabulation"> <button>Save</button>
-        </div>
-        <div class="panel-body">
-          <ul ng-repeat-start="(key, data) in global.global_parameters"> {{ key }} : {{ data }} <span class="tabulation"><label>Value : <input type="number"></label></ul>
-          <ul ng-repeat-end></ul>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-md-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <strong>Snort-Rule</strong> <span class="tabulation"> <button>Save</button>
-        </div>
-        <div class="panel-body">
-          <ul ng-repeat-start="(key, data) in snortRule.operational_cost_parameters"> {{ key }} : {{ data }} <span class="tabulation"><label>Value : <input type="number"></label></ul>
-            <ul ng-repeat-end></ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <strong>Firewall-Rule</strong> <span class="tabulation"> <button>Save</button>
-        </div>
-        <div class="panel-body">
-          <ul ng-repeat-start="(key, data) in firewall.operational_cost_parameters"> {{ key }} : {{ data }}</ul>
-          <ul ng-repeat-end></ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <strong>Patch</strong> <span class="tabulation"> <button>Save</button>
-        </div>
-        <div class="panel-body">
-         <ul ng-repeat-start="(key, data) in patch.operational_cost_parameters"> {{ key }} : {{ data }}</ul>
-         <ul ng-repeat-end></ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-9">
-      <div class="panel panel-default">
         <div class="panel-heading">
           <form name="multipleConfig">
-            <label><input type="radio" ng-model="choice.status" value="patch" checked="checked">Patch</label>
+            <label><input type="radio" ng-model="choice.status" value="global" checked="checked">Global</label>
+            <span class="tabulation" />            
+            <label><input type="radio" ng-model="choice.status" value="patch">Patch</label>
             <span class="tabulation" />
             <label><input type="radio" ng-model="choice.status" value="firewallRule">Firewall-Rule</label>
             <span class="tabulation" />
             <label><input type="radio" ng-model="choice.status" value="snortRule">Snort Rule</label>
           </form>
-          <span class="tabulation"><button>Save</button>
+          <span class="tabulation">
+            <button ng-click="sendForm(choice.status)"><strong>Save</strong></button>
         </div>
 
         <div class="panel-body">
-          <ul ng-repeat-start="(key, data) in firewall.operational_cost_parameters"> {{ key }} : {{ data }} <span class="tabulation"><label>Value : <input type="number"></label></ul>
-          <ul ng-repeat-end></ul>
+          <div ng-switch="choice.status">
+
+            <div ng-switch-when="global">
+              <ul ng-repeat-start="(key, data) in global.global_parameters"> 
+                {{ key }} : {{ data }} <span class="tabulation">
+                <label>Value : <input type="number"></label></ul>
+              <ul ng-repeat-end></ul>
+            </div>
+
+            <div ng-switch-when="patch">
+              <ul ng-repeat-start="(key, data) in patch.operational_cost_parameters"> 
+                {{ key }} : {{ data }} <span class="tabulation">
+                <label>Value : <input type="number"></label></ul>
+              <ul ng-repeat-end></ul>
+            </div>
+
+            <div ng-switch-when="firewallRule">
+              <ul ng-repeat-start="(key, data) in firewall.operational_cost_parameters"> 
+                {{ key }} : {{ data }} <span class="tabulation">
+                <label>Value : <input type="number"></label></ul>
+              <ul ng-repeat-end></ul>
+            </div>
+
+            <div ng-switch-when="snortRule">
+              <ul ng-repeat-start="(key, data) in snortRule.operational_cost_parameters"> 
+                {{ key }} : {{ data }} <span class="tabulation">
+                <label>Value : <input type="number"></label></ul>
+              <ul ng-repeat-end></ul>
+            </div>
         </div>
       </div>
-    </div>
 
+    </div>
   </div>
 </div>

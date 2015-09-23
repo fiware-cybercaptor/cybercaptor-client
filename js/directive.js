@@ -132,7 +132,7 @@ myApp.directive('graphDrawing', function() {
                         .enter().append("circle")
                         .attr("class", "node")
                         .attr("r", 10)
-                        .style("fill", function(d) { return color(d.Type); })
+                        .style("fill", function(d) { return d.Color; })
                         .call(force.drag)
                         .call(node_drag)                        // Added "Pin Down"
                         .on('mouseover', tip.show)              // Added "ToolTip"
@@ -182,8 +182,8 @@ myApp.directive('graphTopoDrawing', function() {
         link: function (scope, element) {
 
             var margin = {top: -10, right: -10, bottom: -10, left: -10};
-            var width = 1000 - margin.left - margin.right;
-            var height = 300 - margin.top - margin.bottom;
+            var width = 1100 - margin.left - margin.right;
+            var height = 400 - margin.top - margin.bottom;
 
             var color = d3.scale.category20();
             
@@ -463,9 +463,9 @@ myApp.directive('graphSimulDrawing', function() {
                         .enter().append("circle")
                         .attr("class", "node")
                         .attr("r", 10)
-                        .style("fill", function(d) { return color(d.Type); })
-                        .style("stroke", function(d) { return color(d.Corrected); })    // Border
-                        .style("stroke-width", 3)
+                        .style("fill", function(d) { return d.Color; })
+                        .style("stroke", function(d) { return d.Corrected; })    // Border
+                        .style("stroke-width", 4)
                         .call(force.drag)
                         .call(node_drag)                        // Added "Pin Down"
                         .on('mouseover', tip.show)              // Added "ToolTip"
@@ -516,7 +516,7 @@ myApp.directive('graphDrawingDra', function() {
 
             var margin = {top: -10, right: -10, bottom: -10, left: -10};
             var width = 1175 - margin.left - margin.right;
-            var height = 350 - margin.top - margin.bottom;
+            var height = 400 - margin.top - margin.bottom;
 
             var color = d3.scale.category20();
             

@@ -176,7 +176,7 @@ routeAppControllers.controller("RadialGaugeDemoCtrl", function($scope){
 routeAppControllers.controller('attackGraphController', function ($scope, $http, myConfig, serviceTest) {
     
     $scope.view = {
-        status : "Logical"
+        status : "Topological"
     };   
 
     $scope.init = function(){
@@ -353,7 +353,7 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
     var values = ["Negligeable", "Minor", "Medium", "Severe", "Catastrophic"]; 
 
     $scope.choice = {
-        status : 'patch'
+        status : 'global'
     };
 
     $scope.tabMetric = [ {id, value }]; 
@@ -408,18 +408,22 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
         })
         var snortRule = $http.get(myConfig.config + "/snort-rule")
             .success(function(data){
+                console.log(data);
                 $scope.snortRule = data;
         })
         var firewall = $http.get(myConfig.config + "/firewall-rule")
             .success(function(data){
+                console.log(data);
                 $scope.firewall = data;
         })
         var patch = $http.get(myConfig.config + "/patch")
             .success(function(data){
+                console.log(data);
                 $scope.patch = data;
         })
         serviceTest.set($scope);
         serviceTest.get();
+        console.log($scope);
     };   
 
     $scope.updateValue = function(data, key){
@@ -427,9 +431,20 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
     };
 
     $scope.sendListHost = function(){
-        var send = $http.post(myConfig.url + "/host/list", $scope.listHosts)
+        var sendListHost = $http.post(myConfig.url + "/host/list", $scope.listHosts)
             .success(function(data){
                 alert("Data Sent");
+                console.log(data);
+        })
+    };
+
+    $scope.sendForm = function(titleForm){
+        console.log(titleForm);
+        var tmp = titleForm;
+        console.log($scope[titleForm]); // Accéder au scope !
+        var sendForm = $http.post(myConfig.url + "/configuration/remediation-cost-parameters/" + titleForm, $scope[titleForm])
+            .success(function(data){
+                console.log(data);
             })
     };
 })
@@ -445,7 +460,7 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
 */
 
 routeAppControllers.controller('dynamicRiskAnalysisController', function($scope, $http, myConfig, serviceTest){
-    var time = Date.now();
+    
     var diffTime = 0;
     var res = 0;
     var tab = [];
@@ -470,10 +485,18 @@ routeAppControllers.controller('dynamicRiskAnalysisController', function($scope,
                 // Stock data
                 tab.unshift(data);
 
+                var time = Date.now();
+
                 // Convert timestamp
                 diffTime = time - data.alerts[0].timestamp;
                 res = transformTime(diffTime);
+                console.log("Time = " + time + ", Res =" + res);
                 $scope.res = res;
+
+                console.log(data);
+
+                data.alerts[0].res = res;
+                console.log(data);
             })
     }    
 

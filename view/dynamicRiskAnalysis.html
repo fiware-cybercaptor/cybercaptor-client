@@ -53,8 +53,8 @@
 <div class="col-md-2">
   <div class="panel panel-default">
     <div class="panel-body">
-      <div> Wholesome Host <div id="wholesome"></div></div>
-      <div> Attacked Host <div id="attacked"></div></div>
+      <div id="wholesome"></div><p><strong>Wholesome Host</strong></p>
+      <div id="attacked"></div><p><strong>Attacked Host</strong></p>
    </div>
  </div>
 </div>
@@ -62,28 +62,37 @@
 <div class="col-md-12">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <p><strong>Alarm Box</strong><span class="tabulation" /><button ng-click="alertFunc()"><strong>Retrieve Alerts</strong></button></p>
+      <p><strong>Alarm Box</strong><span class="tabulation" />
+        <button ng-click="alertFunc()"><strong>Retrieve Alerts</strong></button></p>
     </div>
 
     <div id="tot_remed" class="panel-body">
 
       <ul ng-repeat-start="data in tabAlert.tab"> 
         <ul ng-repeat-start="data in data.alerts">
+         
 
-          <br /> <p>{{ res }} ago <span class="tabulation" /> <strong>Name :</strong> {{ data.name }} <span class="tabulation" /> <strong>Date: </strong> {{ data.date }} <span class="tabulation" /> <strong>CVE :</strong> <a href="{{ data.CVEs[0].link }}"> {{ data.CVEs[0].CVE }}</a> <span class="tabulation" /> <button ng-click="dra(data)">Visualize</button> <span class="tabulation" /> <button type="button" ng-click="displayModal()">Remediations</button> </p>
-
-<!--           <ul ng-repeat-start="a in data.CVEs">
-            {{ a.CVE }}
-          </ul>
-          <ul ng-repeat-end></ul> -->
+          <p>{{ data.res }} ago <span class="tabulation" /> 
+          <strong>Name :</strong> {{ data.name }} <span class="tabulation" /> 
+          <strong>Date: </strong> {{ data.date }} <span class="tabulation" />
+          <button ng-click="dra(data)">Visualize</button> <span class="tabulation" /> 
+          <button type="button" ng-click="displayModal()">Remediations</button><br /> 
+          </p>
 
           <div class="row">
+
+            <div class="col-md-3">
+              <p><ul ng-repeat-start="a in data.CVEs" ng-repeat-end>
+                <strong>CVE :</strong> <a href="{{ a.link }}"> {{ a.CVE }}</a>
+              </ul></p>
+            </div>
 
             <div class="col-md-4">
                 <li ng-repeat-start="a in data.sources">
                   <p><strong>Sources</strong> : {{ a }}</p>
                 </li>
                 <ul ng-repeat-end></ul>
+                <br />
               </div>
 
             <div class="col-md-3">
@@ -91,6 +100,7 @@
                 <p><strong>Targets</strong> : {{ a }}</p>
               </li>
               <ul ng-repeat-end></ul>
+              <br />
             </div>
 
           </div>
@@ -101,8 +111,9 @@
       </ul>
       <ul ng-repeat-end></ul>
     </div>
-  </div>
-</div>
+  </div><!-- panel default -->
+</div><!-- class col-md-12 -->
+
 
 <!-- Modal content -->
 <div id="myModal" class="modal fade" role="dialog">
