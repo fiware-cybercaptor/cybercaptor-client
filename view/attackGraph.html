@@ -40,18 +40,18 @@
     <div class="panel-heading"> 
       <strong>Attack Graph</strong>
       <form name="myForm">
-        <span class="tabulation"> <label><input type="radio" ng-model="view.status" value="Logical" checked="checked">Logical</label>
-        <span class="tabulation"> <label><input type="radio" ng-model="view.status" value="Topological">Topological</label>
+        <span class="tabulation"> <label><input type="radio" ng-model="view.status" value="Topological" checked="checked">Topological</label>
+        <span class="tabulation"> <label><input type="radio" ng-model="view.status" value="Logical">Logical</label>
       </form>
     </div>
 
     <div class="panel-body">
      <div ng-switch="view.status">
-        <div ng-switch-default="Logical">
-          <div class="attack-graph"  graph-drawing></div>
-        </div>
-        <div ng-switch-when="Topological">
+        <div ng-switch-default="Topological">
           <div class="attack-graph" ng-controller="attackGraphTopologicalController" graph-topo-drawing></div>
+        </div>
+        <div ng-switch-when="Logical">
+          <div class="attack-graph"  graph-drawing></div>
         </div>
       </div>
    </div>
@@ -59,13 +59,27 @@
 </div>
 
 <div class="col-md-2">
-
   <div class="panel panel-default">
-    <div class="panel-body">
-     <div> Leaf <div id="leaf"></div>  <span class="tabulation"> <IMG src="img/pirate.png"> Pirate </div>
-      <div> And <div id="and"></div> <span class="tabulation"> <IMG src="img/target.png"> Target </div>
-      <div> Or <div id="or"></div>  </div>
-   </div>
- </div>
-</div>
+    <div ng-switch="view.status">
+
+      <div ng-switch-when="Topological">
+        <div class="panel-body">
+         <div><IMG src="img/pirate.png"><p><strong>Pirate</strong></p></div>
+          <div><IMG src="img/target.png"><p><strong>Target</strong></p></div>
+        </div>
+      </div>
+
+      <div ng-switch-when="Logical">
+        <div class="panel-body">
+          <div id="vulnerability"></div><p><strong>Vulnerability</strong></p>
+          <div id="leaf"></div><p><strong>Leaf</strong></p>  
+          <div id="and"></div><p><strong>And</strong></p>
+          <div id="or"></div><p><strong>Or</strong></p>
+        </div>
+      </div>
+
+   </div><!-- ng-switch -->
+ </div><!-- panel panel default -->
+</div><!-- class col-md -->
+
 </div>

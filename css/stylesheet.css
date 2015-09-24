@@ -55,8 +55,16 @@ svg{
   background-color: white;
   font-size: 25px;
 }
+#vulnerability{
+  background: red;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  float:left;
+  margin-right:10px;
+}
 #leaf{
-  background: #FF8000;
+  background: orange;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -64,7 +72,7 @@ svg{
   margin-right:10px;
 }
 #and{
-  background: #0431B4;
+  background: blue;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -72,7 +80,16 @@ svg{
   margin-right:10px;
 }
 #or{
-  background: #81BEF7;
+  background: lightblue;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  float:left;
+  margin-right:10px;
+}
+#vulnerabilityCorrected{
+  background: red;
+  border : 3px solid green;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -80,7 +97,7 @@ svg{
   margin-right:10px;
 }
 #leafCorrected{
-  background: #FF8000;
+  background: orange;
   border : 3px solid green;
   border-radius: 50%;
   width: 20px;
@@ -89,7 +106,7 @@ svg{
   margin-right:10px;
 }
 #andCorrected{
-  background: #0431B4;
+  background: blue;
   border : 3px solid green;
   border-radius: 50%;
   width: 20px;
@@ -98,7 +115,7 @@ svg{
   margin-right:10px;
 }
 #orCorrected{
-  background: #81BEF7;
+  background: lightblue;
   border : 3px solid green;
   border-radius: 50%;
   width: 20px;

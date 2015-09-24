@@ -57,7 +57,7 @@
  </div>
 </div>
 
-<div class="col-md-2">
+<!-- <div class="col-md-2">
   <div class="panel panel-default">
     <div class="panel-body">
       <div> Leaf <div id="leaf"></div> </div> <span class="tabulation"> 
@@ -68,7 +68,36 @@
       <div> Or Corrected<div id="orCorrected"></div> </div>
    </div>
  </div>
-</div>
+</div> -->
+
+<div class="col-md-2">
+  <div class="panel panel-default">
+    <div ng-switch="view.status">
+
+      <div ng-switch-when="Topological">
+        <div class="panel-body">
+         <div><IMG src="img/pirate.png"><p><strong>Pirate</strong></p></div>
+          <div><IMG src="img/target.png"><p><strong>Target</strong></p></div>
+        </div>
+      </div>
+
+      <div ng-switch-when="Logical">
+        <div class="panel-body">
+          <div id="vulnerability"></div><p><strong>Vulnerability</strong></p>
+          <div id="leaf"></div><p><strong>Leaf</strong></p>  
+          <div id="and"></div><p><strong>And</strong></p>
+          <div id="or"></div><p><strong>Or</strong></p>
+          <br />
+          <div id="vulnerabilityCorrected"></div><p><strong>Vulnerability Corrected</strong></p>
+          <div id="leafCorrected"></div><p><strong>Leaf Corrected</strong></p>
+          <div id="andCorrected"></div><p><strong>And Corrected</strong></p>
+          <div id="orCorrected"></div><p><strong>Or Corrected</strong><p>
+        </div>
+      </div>
+
+   </div><!-- ng-switch -->
+ </div><!-- panel panel default -->
+</div><!-- class col-md -->
 
 <div class="col-md-2">
   <div class="panel panel-default">
