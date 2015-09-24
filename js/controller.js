@@ -39,18 +39,17 @@
 *       to retrieve the ID of attack path.
 */
 routeAppControllers.controller('attackPathController', function ($scope, $http, myConfig, serviceTest) {
-                                    
+
     var defaultPath = {
         ID : 0,
         Value : 1
     };
-    $scope.valueGauge = 0;
 
     // Defautl view : logical
     $scope.view = {
         status : "Logical"
     };
-
+    $scope.valueGauge = 0;
 
     // Function available in $scope, to begin the procedure
     $scope.init = function(){
@@ -86,7 +85,7 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
                         $scope.attack_graph = donnee;
 
                         $scope.valSelecter = $scope.tab[defaultPath.ID];
-                        $scope.appel(defaultPath);                        
+                        $scope.appel(defaultPath);   
                     })
             })
     };   
@@ -94,33 +93,25 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
     // Request to display data from remediation
     $scope.appel = function(numb){
 
-        if($scope.view.status == "Topological"){
-            var callTopoGraph = $http.get(myConfig.url + "/attack_path/" + numb.ID + "/topological")
-                .success(function(graphTopo){
-                    var pathTopoGraph = transformPathTopo(graphTopo, $scope.attack_graph);
-                    $scope.graphes = pathTopoGraph;
-                })
-        }
-        else{
         var appel = $http.get(myConfig.url + "/attack_path/" + numb.ID)
             .success(function(graph){
 
                 var pathGraph = transformPath(graph, $scope.attack_graph);
                 $scope.graphes = pathGraph;
 
-                // Limits attack path's score
-                if(pathGraph.scoring != undefined){
-                    $scope.valueGauge = pathGraph.scoring * 100;
-                }
-
                 // Request to retrieve remediations for the attack path
                 var remed = $http.get(myConfig.url + "/attack_path/" + numb.ID + "/remediations")
                     .success(function(dataRemediations){
                         var remediations = transformRemediation(dataRemediations);
                         $scope.dataRemediations = remediations;
+
+                        // Limits attack path's score
+                        if(pathGraph.scoring != undefined){
+                            $scope.valueGauge = pathGraph.scoring * 100;
+                            console.log("jauge");
+                        }
                     })
             })
-        }
     }
 
     $scope.simulRemed = function(remed, path){
@@ -148,6 +139,7 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
 */
 routeAppControllers.controller("RadialGaugeDemoCtrl", function($scope){
 
+    console.log("Ici");
     $scope.value = $scope.valueGauge;
     $scope.upperLimit = 100;
     $scope.lowerLimit = 0;

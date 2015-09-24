@@ -15,6 +15,7 @@ CyberCAPTOR is an  implementation of the Cyber Security Generic Enabler, the fut
 	- [Attack path](#attack-path)
 	- [Remediation Simulation](#remediation-simulation)
 	- [Dynamic Risk Analysis](#dynamic-risk-analysis)
+	- [Interpretation](#interpretation)
 - [Programmer Guide](#programmer-guide)
 	-[Technologies](#technologies)
 		- [AngularJS](#angularjs)
@@ -88,6 +89,22 @@ This page simulate attacks on your information system.
 
 The alarms are stocked in the Alarm Box, you can selected one and see his impact on your information system. 
 
+## Interpretation
+This part explain the
+![Interpretation](/img/manual/example.png)
+
+In this example, we have 5 nodes :
+
+node (1) : Physical access
+node (2) : Network access
+node (3) : Vulnerability
+node (4) : Rule for remote exploit
+node (5) : Execute code on "linux-user 2" as user
+
+The target, "linux-user-2", has a network access and a physical access, a vulnerability is presents
+and a these conditions allow an attacker to use a remote exploit. In this case, the attack can execute a code on the device as a user.
+
+Reunir les conditions pour réaliser l'attaque. (chemin 1, topology-generated.XML)
 
 
 # Programmers Guide

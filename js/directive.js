@@ -57,11 +57,13 @@ myApp.directive('graphDrawing', function() {
 
                 graphes = scope.graphes;
 
+                console.log("graphDrawing");
+
                 if(graphes != undefined)
                 {
                     var force = d3.layout.force()
                         .charge(-300)
-                        .linkDistance(50)
+                        .linkDistance(100)
                         .friction(0.3)
                         .gravity(0.15)
                         .size([width, height])
@@ -198,6 +200,9 @@ myApp.directive('graphTopoDrawing', function() {
             scope.$watch('graphes', function (graphes) {
 
                 graphes = scope.graphes;
+
+                console.log("graphTopoDrawing");
+
 
                 if(graphes != undefined)
                 {
@@ -388,12 +393,14 @@ myApp.directive('graphSimulDrawing', function() {
 
                 graphes = scope.graphes;
 
+                console.log("GraphSimulDrawing");
+
                 if(graphes != undefined)
                 {
                     var force = d3.layout.force()
-                        .charge(-30)
-                        .linkDistance(30)
-                        .friction(0.9)
+                        .charge(-300)
+                        .linkDistance(100)
+                        .friction(0.3)
                         .gravity(0.15)
                         .size([width, height])
                         .nodes(graphes.nodes)
@@ -533,7 +540,7 @@ myApp.directive('graphDrawingDra', function() {
 
                 graphes = scope.graphes;
 
-                console.log("directive");
+                console.log("graphDrawingDRA");
 
                 if(graphes != undefined)
                 {
