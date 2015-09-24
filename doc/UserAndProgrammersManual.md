@@ -42,11 +42,13 @@ We used dataSet.xml for the differents illustrations.
 ## Initialization
 This page initializes the server with your data.
 
+![Initialization page](/img/manual/initial.png)
+
 Use the button to select your topology file. When it is loaded on the queue file, click on "Upload All" for upload all your data in the server. If your data are totally loaded, the progress bar is fulfilled and a message appears to certified the good reception. 
 
 Now, the server has your data and CyberCAPTOR is ready.
 
-![Initialization page](/img/manual/initial.png)
+![Server ready](/img/manual/initialReady.png)
 
 
 ## Configuration
@@ -57,6 +59,8 @@ When you are ready, click on  "Save" to transmit this file to the server.
 
 The other panel lists differents parameters for the remediation cost calculation. Modify according to your preference and click on "Save".
 
+![Configuration page](/img/manual/config.png)
+
 
 ## Attack Graph
 This page displays the attack graph of your information system.
@@ -64,6 +68,8 @@ This page displays the attack graph of your information system.
 By default, the graph is displayed in a topological view but, you can switch in a logical view in selecting the mode.
 If you put your cursor above a node, you can see his informations.
 You can manipulate the nodes by drag and drop.
+
+![Attack Graph page](/img/manual/attackGraph.png)
 
 
 ## Attack Path
@@ -75,6 +81,14 @@ You have the same options that in Attack Graph.
 Remediations lists all solutions known ordered by your habits and the cost of remediation. Habits represents your preference to a specific remediation.
 The button "Simulate" open a new page "Remediation Simulation".
 
+You can see the attack path in a logical view.
+
+![Attack path, logical view](/img/manual/AttackPath.png)
+
+Or in a topological view
+
+![Attack path, topological view](/img/manual/AttackPathTopo.png)
+
 
 ## Remediation Simulation
 This page displays the remediation application in the attack graph.
@@ -83,11 +97,21 @@ In "Remediation Simulation", you can see the attack graph. Nodes with a green bo
 
 If you appreciate the remediation application, click on "Validate" to specify that you want to applicate this remediation. This action, increase the Habits score in the "Attack Path".
 
+![Remediation Simulation page](/img/manual/remediationSimul.png)
+
 
 ## Dynamic Risk Analysis
 This page simulate attacks on your information system.
 
+![Dynamic Risk Analysis page](/img/manual/DRA.png)
+
 The alarms are stocked in the Alarm Box, you can selected one and see his impact on your information system. 
+
+![Dynamic Risk Analysis visualization](/img/manual/DRAVisu.png)
+
+To see the remediations known to solve the vulnerability, click on "Remediations".
+
+![Dynamic Risk Analysis remediations](/img/manual/DRARemed.png)
 
 ## Interpretation
 This part explain the
@@ -95,14 +119,14 @@ This part explain the
 
 In this example, we have 5 nodes :
 
-node (1) : Physical access
-node (2) : Network access
-node (3) : Vulnerability
-node (4) : Rule for remote exploit
-node (5) : Execute code on "linux-user 2" as user
+*node (1) : Physical access
+*node (2) : Network access
+*node (3) : Vulnerability
+*node (4) : Rule for remote exploit
+*node (5) : Execute code on "linux-user 2" as user
 
 The target, "linux-user-2", has a network access and a physical access, a vulnerability is presents
-and a these conditions allow an attacker to use a remote exploit. In this case, the attack can execute a code on the device as a user.
+and these conditions allow an attacker to use a remote exploit. In this case, the attack can execute a code on the device as a user.
 
 Reunir les conditions pour réaliser l'attaque. (chemin 1, topology-generated.XML)
 
