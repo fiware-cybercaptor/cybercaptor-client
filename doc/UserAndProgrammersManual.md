@@ -38,7 +38,7 @@ The high-level README file of CyberCAPTOR-Client [can be found here](../README.m
 # Introduction
 This is the User and Programmer Guide of CyberCAPTOR-Client.
 
-For the illustrations of this manual, we used the (file)[./dataSet.xml] `dataSet.xml` as topological input file.
+For the illustrations of this manual, we used the [file](./dataSet.xml) `dataSet.xml` as topological input file.
 
 # User Guide
 This guide describe how to use CyberCAPTOR-Client.
