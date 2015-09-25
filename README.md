@@ -84,6 +84,8 @@ this command :
 docker run --name cybercaptor-server -p 8080:8080 fiwarecybercaptor/cybercaptor-server
 ```
 
+More information about CyberCAPTOR-Server (can be found here)[https://github.com/fiware-cybercaptor/cybercaptor-server/blob/master/README.md].
+
 More details about building and/or running the Docker container can be found in [container/README.md](./container/README.md).
 
 # Use of CyberCAPTOR-Client
@@ -96,4 +98,4 @@ For more details, please refer to [User & Programmers manual](./doc/UserAndProgr
 
 If you want to participate to the development of CyberCAPTOR-Client, all contributions are welcome.
 
-For more details, refer to the [User & Programmers manual](https://github.com/fiware-cybercaptor/cybercaptor-client/blob/master/doc/UserAndProgrammersManual.md).
+For more details, refer to the [User & Programmers manual](./doc/UserAndProgrammersManual.md).
