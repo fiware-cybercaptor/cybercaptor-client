@@ -33,6 +33,8 @@ The high-level README file of CyberCAPTOR-Client [can be found here](../README.m
 			- [Filter](#filter)
 		- [Lib](#lib)
 			- [Transform](#transform)
+		- [View](#view]
+		- [Img](#img)
 
 
 # Introduction
@@ -208,3 +210,12 @@ This file contains all [filters](https://docs.angularjs.org/api/ng/filter/filter
 
 #### Transform
 Transform owns differents methods used to modify data received from server. That allow to simplify the calculations and the visualizations for these graphs.
+
+### View
+This folder contains all views used to display informations, graphes, data,...
+
+### Img
+This folder contains all pictures used in CyberCAPTOR Client.
+
+### Doc
+This folder contains all documents describing CyberCAPTOR.
