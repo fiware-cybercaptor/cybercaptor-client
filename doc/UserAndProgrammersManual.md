@@ -46,17 +46,27 @@ This guide describe how to use CyberCAPTOR-Client.
 ## CyberCAPTOR-Client views
 
 ### Initialization
+This page can be accessed at this adress : 
+''''
+http://localhost:8000/#/welcome
+''''
+
 This page initializes the server with data provided in the topological XML file.
 
-![Initialization page](/img/manual/initial.png)
+![Initialization page](/doc/manual/initial.png)
 
 Use the button to select your topology file. When it is loaded on the queue file, click on "Upload All" to upload all your data in the server. When your data is loaded, the progress bar is fulfilled and a message appears to acknowledge the good reception.
 
 Now, the server has received your data and CyberCAPTOR is ready for risk analysis.
 
-![Server ready](/img/manual/initialReady.png)
+![Server ready](/doc/manual/initialReady.png)
 
 ### Configuration
+This page can be accessed at this adress : 
+''''
+http://localhost:8000/#/configuration
+''''
+
 This page lists all hosts of the network. You can also specify the importance of each host and update the parameters used for remediation cost calculation.
 
 The panel "Configuration" lists all hosts of the network topology. You can filter this list with the input "Search".
@@ -66,16 +76,26 @@ When you are ready, click on  "Save" to transmit the information to the server.
 
 The other panel lists the parameters used for the remediation cost calculation. Change them according to your preferences and click on "Save".
 
-![Configuration page](/img/manual/config.png)
+![Configuration page](/doc/manual/config.png)
 
 ### Attack Graph
+This page can be accessed at this adress : 
+''''
+http://localhost:8000/#/attackGraph
+''''
+
 This page displays the attack graph of the information system.
 
 By default, the graph is displayed in a topological view but, you can switch in a logical view by selecting the proper mode. If you put your cursor above a node, you can see the node details. You can also move the nodes using drag and drop.
 
-![Attack Graph page](/img/manual/attackGraph.png)
+![Attack Graph page](/doc/manual/attackGraph.png)
 
 ### Attack Path
+This page can be accessed at this adress : 
+''''
+http://localhost:8000/#/attackPath
+''''
+
 This page displays the selected attack path, its attrition level and remediations.
 
 You can select the path to view in the panel "Selection". By default, the first path is displayed.
@@ -89,35 +109,45 @@ The button "Simulate" open a new page "Remediation Simulation".
 
 You can see the attack path in a logical view.
 
-![Attack path, logical view](/img/manual/AttackPath.png)
+![Attack path, logical view](/doc/manual/AttackPath.png)
 
 Or in a topological view
 
-![Attack path, topological view](/img/manual/AttackPathTopo.png)
+![Attack path, topological view](/doc/manual/AttackPathTopo.png)
 
 
 ### Remediation Simulation
+This page can be accessed at this adress : 
+''''
+http://localhost:8000/#/simulation
+''''
+
 This page display the simulation of a remediation on the whole attack graph.
 
 In "Remediation Simulation", you can see the attack graph. Nodes with a green border are corrected by the remediation selected and the nodes with orange border are still presents.
 
 If you wan to confirm the remediation application, click on "Validate" to certify that you are going to apply this remediation. This action increments the habit score of this remediation.
 
-![Remediation Simulation page](/img/manual/remediationSimul.png)
+![Remediation Simulation page](/doc/manual/remediationSimul.png)
 
 
 ### Dynamic Risk Analysis
+This page can be accessed at this adress : 
+''''
+http://localhost:8000/#/dynamicRiskAnalysis
+''''
+
 This page allow to visualize the currently happening attacks on your information system received by the server in IDMEF.
 
-![Dynamic Risk Analysis page](/img/manual/DRA.png)
+![Dynamic Risk Analysis page](/doc/manual/DRA.png)
 
 The alarms are stored in the Alarm Box, you can selected one and see its impact on the whole information system.
 
-![Dynamic Risk Analysis visualization](/img/manual/DRAVisu.png)
+![Dynamic Risk Analysis visualization](/doc/manual/DRAVisu.png)
 
 To see the dynamic remediations known to solve the vulnerability, click on "Remediations".
 
-![Dynamic Risk Analysis remediations](/img/manual/DRARemed.png)
+![Dynamic Risk Analysis remediations](/doc/manual/DRARemed.png)
 
 ## Interpretation
 This part explains how can understood the logical graphs displayed by CyberCAPTOR-Client.
@@ -130,7 +160,7 @@ In the following example, there are 5 nodes :
 * node (4) : Rule for remote exploit
 * node (5) : Execute code on "linux-user 2" as user
 
-![Interpretation](/img/manual/example.png)
+![Interpretation](/doc/manual/example.png)
 
 The target, "linux-user-2", has a network access and a physical access, a vulnerability is presents
 and these conditions allow an attacker to use a remote exploit. In this case, the attack can execute a code on the device as a user.
@@ -177,4 +207,4 @@ This file contains all [filters](https://docs.angularjs.org/api/ng/filter/filter
 ### Lib
 
 #### Transform
-Transform has differents methods to modify data to simplify the calculations and the visualizations.
+Transform owns differents methods used to modify data received from server. That allow to simplify the calculations and the visualizations for these graphs.
