@@ -11,14 +11,11 @@ CyberCAPTOR is an  implementation of the Cyber Security Generic Enabler, the fut
 	- [Prerequisite](#prerequisite)
 	- [Installation](#installation)
 	- [Test](#test)
-
 - [Docker Version Deployment](#docker-version-deployment)
 	- [Build container](#build-container) *(optional)*
 	- [Run container](#run-container)
-
-- [Utilization](#utilisation)
-
-- [Developpement](#developpement)
+- [Use of CyberCAPTOR-Client](#use-of-cybercaptor-client)
+- [Development](#development)
 
 # Development Version Installation
 
