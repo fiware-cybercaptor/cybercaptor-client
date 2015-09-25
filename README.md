@@ -1,4 +1,4 @@
-CyberCAPTOR Client
+CyberCAPTOR-Client
 ==========
 
 This project is a part of FIWARE. For more information, please consult [FIWARE website] (http://www.fiware.org/).
@@ -23,7 +23,10 @@ CyberCAPTOR is an  implementation of the Cyber Security Generic Enabler, the fut
 # Development Version Installation
 
 ## Prerequisite
-In order to execute the CyberCAPTOR-Client, it is needed to have previously installed the following software in the machine:
+CyberCAPTOR-Client has been tested with the following software, but it should be possible to
+launch it with any other HTTP server (Apache, nginx,...).
+
+This installation procedure need :
 
 - Ubuntu
 - [Python](https://www.python.org/)
@@ -32,60 +35,68 @@ In order to execute the CyberCAPTOR-Client, it is needed to have previously inst
 ## Installation
 
 1) Get sources from GitHub
+
 ```
 git clone https://github.com/fiware-cybercaptor/cybercaptor-client.git
 ```
 
-2) Run a web server. For example, Python can be used but you can use your favorite technlogy.
+2) Run a HTTP server. For example, we use here Python's SimpleHTTPServer but any other HTTP server may be used.
 
-With Python:
+Run SimpleHTTPServer to serve CyberCAPTOR-Client on port 8000:
+
 ```
-cd cybercaptor-client 
+cd cybercaptor-client
 python -m SimpleHTTPServer 8000
 ```
 
 ## Test
 
-Run your browser, for example Chromium, to go on URL :
+Open your browser, for example Chromium, and go on URL :
+
 ```
-localhost:8000
+http://localhost:8000
 ```
 
-If you see a window with the title : *CyberCAPTOR Client* and a tab : *Initialization*. The CyberCAPTOR client has been properly installed.
+If you see a window with the title : *CyberCAPTOR-Client* and a tab : *Initialization*. The CyberCAPTOR-Client has been properly installed.
 
 
-For more details, read the documentation [Installation And adminsitration Manual](https://github.com/fiware-cybercaptor/cybercaptor-client/blob/master/doc/InstallationAndAdministrationManual.md)
+For more details, read the documentation [Installation And adminsitration Manual](./doc/InstallationAndAdministrationManual.md).
 
 
 # Docker Version Deployment
 
 ## Build container (optional)
+
 ```
+cd container
 docker build -t cybercaptor-client
 ```
 
 ## Run container
-If you want to run the client in foreground, launch the following command:
-```
-docker run --rm --name cybercaptor-client -p 8888:80 fiwarecybercaptor/cybercaptor-client
-```
 
-You need a CyberCAPTOR Server to test CyberCAPTOR Client.
+If you want to run the client in foreground in a terminal, launch the following command. CyberCAPTOR-Client will listen on port 8000.
+
 ```
-docker run --name cybercaptor-server -p 8888:8080 fiwarecybercaptor/cybercaptor-server
+docker run --rm --name cybercaptor-client -p 8000:80 fiwarecybercaptor/cybercaptor-client
 ```
 
-More details about building and/or running the Docker container can be found in [container/README.md](https://github.com/fiware-cybercaptor/cybercaptor-server/blob/master/container/README.md)
+Note that you need a CyberCAPTOR Server to test properly CyberCAPTOR-Client. CyberCAPTOR Server can be launched with
+this command :
 
-# Utilization
-A panel with explanation is present at the top of the each pages.
+```
+docker run --name cybercaptor-server -p 8080:8080 fiwarecybercaptor/cybercaptor-server
+```
 
-For more details, please check up [User Manual](https://github.com/fiware-cybercaptor/cybercaptor-client/blob/master/doc/UserAndProgrammersManual.md)
+More details about building and/or running the Docker container can be found in [container/README.md](./container/README.md).
 
-# Developpement
-If you want to develop other features, please, fell be free to do this.
+# Use of CyberCAPTOR-Client
 
-For more details, read the code commented and the [Programmers Manual](https://github.com/fiware-cybercaptor/cybercaptor-client/blob/master/doc/UserAndProgrammersManual.md) 
+In the top of each page of CyberCAPTOR-Client, a panel describe how to use such page.
 
+For more details, please refer to [User & Programmers manual ](./doc/UserAndProgrammersManual.md).
 
+# Development
 
+If you want to participate to the development of CyberCAPTOR-Client, all contributions are welcome.
+
+For more details, refer to the [User & Programmers manual ](https://github.com/fiware-cybercaptor/cybercaptor-client/blob/master/doc/UserAndProgrammersManual.md).
