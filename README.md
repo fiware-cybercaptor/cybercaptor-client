@@ -93,10 +93,10 @@ More details about building and/or running the Docker container can be found in 
 
 In the top of each page of CyberCAPTOR-Client, a panel describe how to use such page.
 
-For more details, please refer to [User & Programmers manual ](./doc/UserAndProgrammersManual.md).
+For more details, please refer to [User & Programmers manual](./doc/UserAndProgrammersManual.md).
 
 # Development
 
 If you want to participate to the development of CyberCAPTOR-Client, all contributions are welcome.
 
-For more details, refer to the [User & Programmers manual ](https://github.com/fiware-cybercaptor/cybercaptor-client/blob/master/doc/UserAndProgrammersManual.md).
+For more details, refer to the [User & Programmers manual](https://github.com/fiware-cybercaptor/cybercaptor-client/blob/master/doc/UserAndProgrammersManual.md).
