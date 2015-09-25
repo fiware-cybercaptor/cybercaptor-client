@@ -33,8 +33,9 @@ The high-level README file of CyberCAPTOR-Client [can be found here](../README.m
 			- [Filter](#filter)
 		- [Lib](#lib)
 			- [Transform](#transform)
-		- [View](#view]
+		- [View](#view)
 		- [Img](#img)
+		- [Doc](#doc)
 
 
 # Introduction
@@ -209,7 +210,7 @@ This file contains all [filters](https://docs.angularjs.org/api/ng/filter/filter
 ### Lib
 
 #### Transform
-Transform owns differents methods used to modify data received from server. That allow to simplify the calculations and the visualizations for these graphs.
+Transform owns differents methods used to modify data's structure received from server. That allow to simplify the calculations and the visualizations for these graphs.
 
 ### View
 This folder contains all views used to display informations, graphes, data,...
