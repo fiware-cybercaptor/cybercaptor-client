@@ -5,7 +5,7 @@ This project is a part of FIWARE. For more information, please consult [FIWARE w
 
 CyberCAPTOR is an  implementation of the Cyber Security Generic Enabler, the future developments of the [Security Monitoring GE] (http://catalogue.fiware.org/enablers/security-monitoring).
 
-The high-level description README file of CyberCAPTOR-Client [can be found here](../README.md).
+The high-level README file of CyberCAPTOR-Client [can be found here](../README.md).
 
 ## Table of Contents
 
