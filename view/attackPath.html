@@ -47,43 +47,46 @@
         <span class="tabulation"> <label><input type="radio" ng-model="view.status" value="Logical" checked="checked">Logical</label>
           <span class="tabulation"> <label><input type="radio" ng-model="view.status" value="Topological">Topological</label>
           </form>
-    </div>
+    </div><!-- panel heading -->
 
     <div class="panel-body">
       <div ng-switch="view.status">
         <div ng-switch-default="Topological">
           <div class="attack-graph" ng-controller="attackPathTopologicalController" graph-topo-drawing></div>
-        </div>
+        </div><!-- Topological -->
         <div ng-switch-when="Logical">
           <div class="attack-graph"  graph-drawing></div>
-        </div>
+        </div><!-- Logical -->
       </div>
-    </div>
-  </div>
-</div>
+    </div><!-- panel body -->
+  </div><!-- panel default -->
+</div><!-- col md 9 -->
 
 
 <div class="col-md-2">
 
   <div class="panel panel-default">
-    <div class="panel-heading">Selection</div>
+    <div class="panel-heading">
+      <p>Selection</p>
+    </div><!-- panel heading -->
     <div class="panel-body" class="texte">
       <p>Select the path : <select ng-model="valSelecter" ng-options="item.Value for item in tab" ng-click="appel(valSelecter)"> </select> </p>
-    </div>
-  </div>	
+    </div><!-- panel body -->
+  </div><!-- panel default -->	
 
   <div class="panel panel-default">
-    <div class="panel-heading">Attrition Level
-    </div>
+    <div class="panel-heading">
+      <p>Attrition Level</p>
+    </div><!-- panel heading -->
     <div id="selected" class="panel-body">
       <p style="text-align:center">
-        <span ng-class="{green: graphes.color == 'green', yellow: graphes.color == 'yellow', orange: graphes.color == 'orange', red: graphes.color == 'red', black: graphes.color == 'black'}"> <b> {{ graphes.text }} </b> </span>
+        <span ng-class="{green: graphes.color == 'green', yellow: graphes.color == 'yellow', orange: graphes.color == 'orange', red: graphes.color == 'red', black: graphes.color == 'black'}"><b>{{ graphes.text }}</b></span>
       </p>
       <div ng-controller="RadialGaugeDemoCtrl">
         <span width="160" ng-radial-gauge ranges="ranges" value="valueGauge" value-unit="unit" precision="precision" lower-limit="lowerLimit" upper-limit="upperLimit"></span>
       </div>
-    </div>
-  </div>
+    </div><!-- panel body -->
+  </div><!-- panel default -->
 
   <div class="panel panel-default">
     <div ng-switch="view.status">
@@ -116,12 +119,11 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <strong><p>Remediations</strong></p>
-          </div>
+          </div><!-- panel heading -->
           <div id="tot_remed" class="panel-body">
 
             <ul ng-repeat-start="remed in dataRemediations">
               <b style="font-size:20px">Remediation: {{ remed.ID+1 }}</b> <span class="tabulation" /> <b>Cost</b> : {{ remed.Cost }} € <span class="tabulation" /> <b>Habits : {{ remed.Habits }} </b> <span class="tabulation" /> <a class="btn btn-default" href="#/simulation" role="button" ng-click="simulRemed(remed, valSelecter)">Simulate</a>
-
 
               <li ng-repeat-start="(key, a) in remed.DeployReme"> Action {{ key+1 }} : </br>
                 <ul>
@@ -149,7 +151,7 @@
                         <div ng-switch-when="firewall-rule">
                             <pre>{{ action }}</pre>
                         </div>
-                      </div>
+                      </div><!-- ng switch -->
                     </li>
 
                   </ul >
@@ -162,8 +164,8 @@
             <li ng-repeat="a in remed.DeployReme"> 
               <li ng-repeat="a in remed.remediation track by $index"> <b> {{ a }} </li> 
             </li>
-          </div>
-        </div>
-      </div>
-    </div>
+          </div><!-- panel body -->
+        </div><!-- panel default -->
+      </div><!-- col md -->
+    </div><!-- row -->
 </div>

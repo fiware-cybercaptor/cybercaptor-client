@@ -29,15 +29,15 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <p><strong>How it works ?</strong></p>
-      </div>
+      </div><!-- panel heading -->
 
       <div class="panel-body">
         <p>On this page, you can configure the parameters to cutomize calculations.</p>
         <p>In the panel <em>"Configuration"</em>, you can set the importance of the hosts.</p>
         <p>The other panel configures the parameters for remediation cost calculation.</p>
-      </div>
-    </div>
-  </div>
+      </div><!-- panel body -->
+    </div><!-- panel default -->
+  </div><!-- col md -->
 
   <div class="col-md-5">
    <div class="panel panel-default">
@@ -45,23 +45,20 @@
       <strong>Configuration</strong> 
       <span class="tabulation"> <label>Search : <input type="search" ng-model="Name" placeholder="Enter the name"></label>
         <span class="tabulation"> <button ng-click="sendListHost()">Save</button> 
-    </div>
+    </div><!-- panel heading -->
         <div id="config" class="panel-body">
-
           <ul ng-repeat-start="(key, data) in listHosts.hosts | listFilter:Name">
             <b style="font-size:20px">Host: {{ data.index+1 }} <span class="tabulation"> Name: {{ data.name }} </b>
-
             <li ng-repeat-start="a in data.security_requirements"> Value : {{ a.metric }}
               <span class="tabulation"> <select ng-init="TheValue = tabTmp[data.index]" ng-model="TheValue" ng-options="item.Value for item in tabMetric" ng-click="updateValue(TheValue, data.index)" ></select> </br>
             </li>
-
               <ul ng-repeat-end></ul>
           </ul>
           <ul ng-repeat-end></ul>
           </ul>
-        </div>
-      </div>
-    </div>
+        </div><!-- panel body -->
+      </div><!-- panel default -->
+    </div><!-- col md -->
 
     <div class="col-md-6">
       <div class="panel panel-default">
@@ -78,7 +75,7 @@
           </form>
           <span class="tabulation">
             <button ng-click="sendForm(choice.status)"><strong>Save</strong></button>
-        </div>
+        </div><!-- panel heading -->
 
         <div class="panel-body">
           <div ng-switch="choice.status">
@@ -110,9 +107,9 @@
                 <label>Value : <input type="number"></label></ul>
               <ul ng-repeat-end></ul>
             </div>
-        </div>
-      </div>
+        </div><!-- ng switch -->
+      </div><!-- panel body -->
 
-    </div>
-  </div>
+    </div><!-- panel default -->
+  </div><!-- col md -->
 </div>
