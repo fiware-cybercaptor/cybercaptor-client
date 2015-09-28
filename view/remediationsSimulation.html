@@ -24,16 +24,14 @@
 <br/><br/><br/>
 
 <div class="col-md-9">
-
   <div class="panel panel-default">
     <div class="panel-heading">
       <p><strong>How it works ?</strong></p>
-    </div>
-
+    </div><!-- panel heading -->
     <div class="panel-body">
       <p>This window displays the simulation of a remediation in the attack graph and show the difference with the original attack graph.</p>
-    </div>
-  </div>
+    </div><!-- panel body -->
+  </div><!-- panel default -->
 
   <div class="panel panel-default">
     <div class="panel-heading"> 
@@ -42,8 +40,7 @@
         <span class="tabulation"> <label><input type="radio" ng-model="view.status" value="Logical" checked="checked">Logical</label>
         <span class="tabulation"> <label><input type="radio" ng-model="view.status" value="Topological">Topological</label>
       </form>
-    </div>
-
+    </div><!-- panel heading -->
     <div class="panel-body">
      <div ng-switch="view.status">
         <div ng-switch-default="Logical">
@@ -52,23 +49,10 @@
         <div ng-switch-when="Topological">
           <div class="attack-graph" ng-controller="attackGraphTopologicalController" graph-topo-drawing></div>
         </div>
-      </div>
-   </div>
- </div>
-</div>
-
-<!-- <div class="col-md-2">
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div> Leaf <div id="leaf"></div> </div> <span class="tabulation"> 
-      <div> And <div id="and"></div> </div> <span class="tabulation">
-      <div> Or <div id="or"></div> </div> <span class="tabulation">
-      <div> Leaf Corrected <div id="leafCorrected"></div> </div> <span class="tabulation"> 
-      <div> And Corrected<div id="andCorrected"></div> </div> <span class="tabulation">
-      <div> Or Corrected<div id="orCorrected"></div> </div>
-   </div>
- </div>
-</div> -->
+      </div><!-- ng switch -->
+   </div><!-- panel body -->
+ </div><!-- panel default -->
+</div><!-- col md -->
 
 <div class="col-md-2">
   <div class="panel panel-default">
@@ -92,7 +76,7 @@
           <div id="leafCorrected"></div><p><strong>Leaf Corrected</strong></p>
           <div id="andCorrected"></div><p><strong>And Corrected</strong></p>
           <div id="orCorrected"></div><p><strong>Or Corrected</strong><p>
-        </div>
+        </div><!-- panel body -->
       </div>
 
    </div><!-- ng-switch -->
@@ -105,10 +89,8 @@
       <div> 
         <a class="btn btn-success" href="#/attackPath" ng-click="validate()">Validate</a>  <a class="btn btn-warning" href="#/attackPath">Cancel</a>
       </div>
-   </div>
- </div>
-</div>
-
-
+   </div><!-- panel body -->
+ </div><!-- panel default -->
+</div><!-- col md -->
 
 </div>

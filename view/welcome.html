@@ -19,9 +19,9 @@
           </ul>
         </div><!--/.nav-collapse -->
       </div>
-    </nav>
+</nav>
 
-     <br/><br/><br/>
+<br/><br/><br/>
 
     <div clas="row">
 
@@ -34,15 +34,15 @@
           <div class="panel-body">
             <p>This page initialize the server with your data. To send them, click on the button then select a topology file.</p>
             <p>After seeing your file in the queue, click on <em>"Upload  all"</em> and watch the progress bar. When it is completely filled, it means that your data is loaded.</p>
-          </div>
-        </div>
-      </div>
+          </div><!-- panel body -->
+        </div><!-- panel default -->
+      </div><!-- col md -->
 
       <div class="col-md-8">
         <div class="panel panel-default">
           <div class="panel-heading">
             <strong>Select File : </strong> <input type="file" name="file" nv-file-select="" uploader="uploader" />
-          </div>
+          </div><!-- panel heading -->
 
           <div class="panel-body">
             <p>Queue length : {{ uploader.queue.length }}</p>
@@ -106,7 +106,6 @@
             </div>
 
           </div>
-
         </div>
       </div>
     </div>
