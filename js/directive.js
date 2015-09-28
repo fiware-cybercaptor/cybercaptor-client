@@ -203,7 +203,6 @@ myApp.directive('graphTopoDrawing', function() {
 
                 console.log("graphTopoDrawing");
 
-
                 if(graphes != undefined)
                 {
                     var force = d3.layout.force()
@@ -260,8 +259,6 @@ myApp.directive('graphTopoDrawing', function() {
                         .attr('class', 'd3-tip')
                         .offset([-10, 0])
                         .html(function (d) { return "Name : " + d.Name + 
-                                                "<br />" + "Source : " + d.Source +
-                                                "<br />" + "Target : " + d.Target +
                                                 "<br />" + "IP : " + d.IP;
                                             })
                         svg.call(tip);

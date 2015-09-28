@@ -108,7 +108,6 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
                         // Limits attack path's score
                         if(pathGraph.scoring != undefined){
                             $scope.valueGauge = pathGraph.scoring * 100;
-                            console.log("jauge");
                         }
                     })
             })
@@ -139,7 +138,6 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
 */
 routeAppControllers.controller("RadialGaugeDemoCtrl", function($scope){
 
-    console.log("Ici");
     $scope.value = $scope.valueGauge;
     $scope.upperLimit = 100;
     $scope.lowerLimit = 0;
@@ -400,22 +398,18 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
         })
         var snortRule = $http.get(myConfig.config + "/snort-rule")
             .success(function(data){
-                console.log(data);
                 $scope.snortRule = data;
         })
         var firewall = $http.get(myConfig.config + "/firewall-rule")
             .success(function(data){
-                console.log(data);
                 $scope.firewall = data;
         })
         var patch = $http.get(myConfig.config + "/patch")
             .success(function(data){
-                console.log(data);
                 $scope.patch = data;
         })
         serviceTest.set($scope);
         serviceTest.get();
-        console.log($scope);
     };   
 
     $scope.updateValue = function(data, key){
@@ -426,17 +420,13 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
         var sendListHost = $http.post(myConfig.url + "/host/list", $scope.listHosts)
             .success(function(data){
                 alert("Data Sent");
-                console.log(data);
         })
     };
 
     $scope.sendForm = function(titleForm){
-        console.log(titleForm);
         var tmp = titleForm;
-        console.log($scope[titleForm]); // Accéder au scope !
         var sendForm = $http.post(myConfig.url + "/configuration/remediation-cost-parameters/" + titleForm, $scope[titleForm])
             .success(function(data){
-                console.log(data);
             })
     };
 })
@@ -463,7 +453,6 @@ routeAppControllers.controller('dynamicRiskAnalysisController', function($scope,
 
         var topological = $http.get(myConfig.url + "/attack_graph/topological")
             .success(function(data) {
-                console.log(data);
                 $scope.tmpData = data;
                 var attackTopoGraph = transformGraphTopoDRA(data);
                 $scope.graphes = attackTopoGraph;
@@ -479,16 +468,13 @@ routeAppControllers.controller('dynamicRiskAnalysisController', function($scope,
 
                 var time = Date.now();
 
-                // Convert timestamp
-                diffTime = time - data.alerts[0].timestamp;
-                res = transformTime(diffTime);
-                console.log("Time = " + time + ", Res =" + res);
-                $scope.res = res;
-
-                console.log(data);
-
-                data.alerts[0].res = res;
-                console.log(data);
+                if(data.alerts[0] != undefined){
+                    // Convert timestamp
+                    diffTime = time - data.alerts[0].timestamp;
+                    res = transformTime(diffTime);
+                    $scope.res = res;
+                    data.alerts[0].res = res;
+                }
             })
     }    
 
@@ -502,10 +488,7 @@ routeAppControllers.controller('dynamicRiskAnalysisController', function($scope,
         $scope.graphes = graphDRA;
 
         var reme = data.dynamic_remediations;
-        console.log(reme);
         $scope.draRemed = reme;
-
-        console.log($scope);
     };
 
     $scope.displayModal = function(){

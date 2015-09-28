@@ -135,9 +135,23 @@
                     <b>{{ a.label }}</b>
                   </li>
                   <ul>
+
                     <li ng-repeat-start="action in a.action track by $index" ng-repeat-end>
-                      {{ action }} 
+                      <div ng-switch="a.type">
+                        <div ng-switch-when="patch">
+                          <a href="{{ action }}">{{ action }}</a>
+                        </div>
+
+                        <div ng-switch-when="snort-rules">
+                            <pre>{{ action }}</pre>
+                        </div>
+
+                        <div ng-switch-when="firewall-rule">
+                            <pre>{{ action }}</pre>
+                        </div>
+                      </div>
                     </li>
+
                   </ul >
                 </ul>
               </li>
