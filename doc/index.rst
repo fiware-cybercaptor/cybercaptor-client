@@ -1,5 +1,6 @@
+####################################
 CyberCAPTOR-Client
-==================
+####################################
 
 `FIWARE Cyber seCurity Attack graPh moniTORing -
 Client <https://fiware-cybercaptor.github.io/cybercaptor-client/>`__
@@ -11,17 +12,26 @@ CyberCAPTOR is an implementation of the Cyber Security Generic Enabler,
 the future developments of the `Security Monitoring
 GE <http://catalogue.fiware.org/enablers/security-monitoring>`__.
 
-This documentation can be accessed online at
+The last version of the documentation can be accessed online at
 https://cybercaptor.readthedocs.org/projects/cybercaptor-client/en/latest/.
 
-The main documentation of CyberCAPTOR-Client is organized into a couple
-sections:
+Table of Contents
+=================
+.. toctree::
+   :maxdepth: 3
+   :numbered:
 
--  `Installation and Administration
-   Manual <./InstallationAndAdministrationManual.rst>`__
--  `User and Programmers Manual <./UserAndProgrammersManual.rst>`__
+   InstallationAndAdministrationManual.rst
+   UserAndProgrammersManual.rst
+   CyberCAPTOR-Server <http://cybercaptor.readthedocs.org/projects/cybercaptor-server/en/latest/>
+   CyberCAPTOR-P2DS <http://cybercaptor.readthedocs.org/projects/cybercaptor-p2ds/en/latest/>
+
+
+
+
+
 
 Information about development is also available `in the README
 file <https://github.com/fiware-cybercaptor/cybercaptor-client/blob/master/README.md>`__.
 
-Please see the `project license <../LICENSE>`__ for license information.
+Please see the `project license <https://github.com/fiware-cybercaptor/cybercaptor-client/blob/master/LICENSE>`__ for license information.

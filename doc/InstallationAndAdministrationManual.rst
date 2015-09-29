@@ -1,5 +1,6 @@
+**********************************************************************
 CyberCAPTOR-Client - Installation and Administration Manual
-===========================================================
+**********************************************************************
 
 This project is a part of FIWARE. For more information, please consult
 [FIWARE website] (http://www.fiware.org/).
@@ -12,7 +13,13 @@ The high-level README file of CyberCAPTOR-Client `can be found
 here <../README.md>`__.
 
 Table of Contents
------------------
+=================
+
+.. toctree::
+   :hidden:
+
+   CyberCAPTOR-Server <http://cybercaptor.readthedocs.org/projects/cybercaptor-server/en/latest/>
+   CyberCAPTOR-P2DS <http://cybercaptor.readthedocs.org/projects/cybercaptor-p2ds/en/latest/>
 
 -  `Introduction <#introduction>`__
 -  `Installation <#installation>`__

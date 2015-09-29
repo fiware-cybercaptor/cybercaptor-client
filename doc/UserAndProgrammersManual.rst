@@ -1,5 +1,6 @@
+**********************************************************************
 CyberCAPTOR-Client - User and Programmer Guide
-==============================================
+**********************************************************************
 
 This project is a part of FIWARE. For more information, please consult
 [FIWARE website] (http://www.fiware.org/).
@@ -12,7 +13,13 @@ The high-level README file of CyberCAPTOR-Client `can be found
 here <../README.md>`__.
 
 Table of Contents
------------------
+=================
+
+.. toctree::
+   :hidden:
+
+   CyberCAPTOR-Server <http://cybercaptor.readthedocs.org/projects/cybercaptor-server/en/latest/>
+   CyberCAPTOR-P2DS <http://cybercaptor.readthedocs.org/projects/cybercaptor-p2ds/en/latest/>
 
 -  `Introduction <#introduction>`__
 -  `User Guide <#user-guide>`__
@@ -79,10 +86,11 @@ http://localhost:8000/#/welcome ''''
 This page initializes the server with data provided in the topological
 XML file.
 
-.. figure:: /doc/manual/initial.png
+.. figure:: /manual/initial.png
    :alt: Initialization page
 
    Initialization page
+
 Use the button to select your topology file. When it is loaded on the
 queue file, click on "Upload All" to upload all your data in the server.
 When your data is loaded, the progress bar is fulfilled and a message
@@ -91,10 +99,11 @@ appears to acknowledge the good reception.
 Now, the server has received your data and CyberCAPTOR is ready for risk
 analysis.
 
-.. figure:: /doc/manual/initialReady.png
+.. figure:: /manual/initialReady.png
    :alt: Server ready
 
    Server ready
+
 Configuration
 ~~~~~~~~~~~~~
 
@@ -116,10 +125,11 @@ The other panel lists the parameters used for the remediation cost
 calculation. Change them according to your preferences and click on
 "Save".
 
-.. figure:: /doc/manual/config.png
+.. figure:: /manual/config.png
    :alt: Configuration page
 
    Configuration page
+
 Attack Graph
 ~~~~~~~~~~~~
 
@@ -133,10 +143,11 @@ switch in a logical view by selecting the proper mode. If you put your
 cursor above a node, you can see the node details. You can also move the
 nodes using drag and drop.
 
-.. figure:: /doc/manual/attackGraph.png
+.. figure:: /manual/attackGraph.png
    :alt: Attack Graph page
 
    Attack Graph page
+
 Attack Path
 ~~~~~~~~~~~
 
@@ -165,16 +176,18 @@ The button "Simulate" open a new page "Remediation Simulation".
 
 You can see the attack path in a logical view.
 
-.. figure:: /doc/manual/AttackPath.png
+.. figure:: /manual/AttackPath.png
    :alt: Attack path, logical view
 
    Attack path, logical view
+
 Or in a topological view
 
-.. figure:: /doc/manual/AttackPathTopo.png
+.. figure:: /manual/AttackPathTopo.png
    :alt: Attack path, topological view
 
    Attack path, topological view
+
 Remediation Simulation
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -192,10 +205,11 @@ If you wan to confirm the remediation application, click on "Validate"
 to certify that you are going to apply this remediation. This action
 increments the habit score of this remediation.
 
-.. figure:: /doc/manual/remediationSimul.png
+.. figure:: /manual/remediationSimul.png
    :alt: Remediation Simulation page
 
    Remediation Simulation page
+
 Dynamic Risk Analysis
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -205,24 +219,27 @@ http://localhost:8000/#/dynamicRiskAnalysis ''''
 This page allow to visualize the currently happening attacks on your
 information system received by the server in IDMEF.
 
-.. figure:: /doc/manual/DRA.png
+.. figure:: /manual/DRA.png
    :alt: Dynamic Risk Analysis page
 
    Dynamic Risk Analysis page
+
 The alarms are stored in the Alarm Box, you can selected one and see its
 impact on the whole information system.
 
-.. figure:: /doc/manual/DRAVisu.png
+.. figure:: /manual/DRAVisu.png
    :alt: Dynamic Risk Analysis visualization
 
    Dynamic Risk Analysis visualization
+
 To see the dynamic remediations known to solve the vulnerability, click
 on "Remediations".
 
-.. figure:: /doc/manual/DRARemed.png
+.. figure:: /manual/DRARemed.png
    :alt: Dynamic Risk Analysis remediations
 
    Dynamic Risk Analysis remediations
+
 Interpretation
 --------------
 
@@ -237,10 +254,11 @@ In the following example, there are 5 nodes :
 -  node (4) : Rule for remote exploit
 -  node (5) : Execute code on "linux-user 2" as user
 
-.. figure:: /doc/manual/example.png
+.. figure:: /manual/example.png
    :alt: Interpretation
 
    Interpretation
+
 The target, "linux-user-2", has a network access and a physical access,
 a vulnerability is presents and these conditions allow an attacker to
 use a remote exploit. In this case, the attack can execute a code on the
