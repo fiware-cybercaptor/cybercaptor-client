@@ -80,8 +80,7 @@ CyberCAPTOR-Client views
 Initialization
 ~~~~~~~~~~~~~~
 
-This page can be accessed at this adress : ''''
-http://localhost:8000/#/welcome ''''
+This page can be accessed at this adress : http://localhost:8000/#/welcome
 
 This page initializes the server with data provided in the topological
 XML file.
@@ -107,8 +106,7 @@ analysis.
 Configuration
 ~~~~~~~~~~~~~
 
-This page can be accessed at this adress : ''''
-http://localhost:8000/#/configuration ''''
+This page can be accessed at this adress : http://localhost:8000/#/configuration
 
 This page lists all hosts of the network. You can also specify the
 importance of each host and update the parameters used for remediation
@@ -133,8 +131,7 @@ calculation. Change them according to your preferences and click on
 Attack Graph
 ~~~~~~~~~~~~
 
-This page can be accessed at this adress : ''''
-http://localhost:8000/#/attackGraph ''''
+This page can be accessed at this adress : http://localhost:8000/#/attackGraph
 
 This page displays the attack graph of the information system.
 
@@ -151,8 +148,7 @@ nodes using drag and drop.
 Attack Path
 ~~~~~~~~~~~
 
-This page can be accessed at this adress : ''''
-http://localhost:8000/#/attackPath ''''
+This page can be accessed at this adress : http://localhost:8000/#/attackPath
 
 This page displays the selected attack path, its attrition level and
 remediations.
@@ -191,8 +187,7 @@ Or in a topological view
 Remediation Simulation
 ~~~~~~~~~~~~~~~~~~~~~~
 
-This page can be accessed at this adress : ''''
-http://localhost:8000/#/simulation ''''
+This page can be accessed at this adress : http://localhost:8000/#/simulation
 
 This page display the simulation of a remediation on the whole attack
 graph.
@@ -213,8 +208,7 @@ increments the habit score of this remediation.
 Dynamic Risk Analysis
 ~~~~~~~~~~~~~~~~~~~~~
 
-This page can be accessed at this adress : ''''
-http://localhost:8000/#/dynamicRiskAnalysis ''''
+This page can be accessed at this adress : http://localhost:8000/#/dynamicRiskAnalysis
 
 This page allow to visualize the currently happening attacks on your
 information system received by the server in IDMEF.
