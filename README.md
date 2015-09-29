@@ -57,7 +57,7 @@ http://localhost:8000
 If you see a window with the title : *CyberCAPTOR-Client* and a tab : *Initialization*. The CyberCAPTOR-Client has been properly installed.
 
 
-For more details, read the documentation [Installation And adminsitration Manual](./doc/InstallationAndAdministrationManual.md).
+For more details, read the documentation [Installation And adminsitration Manual](./doc/InstallationAndAdministrationManual.rst).
 
 
 # Docker Version Deployment
@@ -92,10 +92,10 @@ More details about building and/or running the Docker container can be found in 
 
 In the top of each page of CyberCAPTOR-Client, a panel describe how to use such page.
 
-For more details, please refer to [User & Programmers manual](./doc/UserAndProgrammersManual.md#user-guide).
+For more details, please refer to [User & Programmers manual](./doc/UserAndProgrammersManual.rst#user-guide).
 
 # Development
 
 If you want to participate to the development of CyberCAPTOR-Client, all contributions are welcome.
 
-For more details, refer to the [User & Programmers manual](./doc/UserAndProgrammersManual.md#programmer-guide).
+For more details, refer to the [User & Programmers manual](./doc/UserAndProgrammersManual.rst#programmer-guide).

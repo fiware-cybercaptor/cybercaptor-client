@@ -18,8 +18,8 @@ The main documentation of CyberCAPTOR-Client is organized into a couple
 sections:
 
 -  `Installation and Administration
-   Manual <./InstallationAndAdministrationManual.md>`__
--  `User and Programmers Manual <./UserAndProgrammersManual.md>`__
+   Manual <./InstallationAndAdministrationManual.rst>`__
+-  `User and Programmers Manual <./UserAndProgrammersManual.rst>`__
 
 Information about development is also available `in the README
 file <https://github.com/fiware-cybercaptor/cybercaptor-client/blob/master/README.md>`__.
