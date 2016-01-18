@@ -22,9 +22,6 @@ Table of Contents
    :numbered:
 
    InstallationAndAdministrationManual.rst
-   UserAndProgrammersManual.rst
-   CyberCAPTOR-Server <http://cybercaptor.readthedocs.org/projects/cybercaptor-server/en/latest/>
-   CyberCAPTOR-P2DS <http://cybercaptor.readthedocs.org/projects/cybercaptor-p2ds/en/latest/>
 
 
 Information about development is also available `in the README
