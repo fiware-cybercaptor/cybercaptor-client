@@ -13,7 +13,8 @@ WORKDIR /home/app
 
 
 # Download cybercaptor-client sources
-RUN git clone https://github.com/fiware-cybercaptor/cybercaptor-client.git
+RUN git clone --depth=1 https://github.com/fiware-cybercaptor/cybercaptor-client.git
+RUN rm -rf !$/.git
 
 WORKDIR /home/app/cybercaptor-client
 
