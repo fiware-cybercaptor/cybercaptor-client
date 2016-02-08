@@ -66,7 +66,7 @@ For more details, read the documentation [Installation And adminsitration Manual
 
 ```
 cd container
-docker build -t cybercaptor-client
+docker build -t cybercaptor-client .
 ```
 
 ## Run container
