@@ -1,10 +1,10 @@
 ############################################################
 # Dockerfile to build and run the FIWARE CyberCAPTOR Client
-# Based on Ubuntu
+# Based on Ubuntu 14.04
 ############################################################
 
-# Use phusion/passenger-full as base image.
-
+# Use phusion/customizable as base image. For more information,
+# see https://hub.docker.com/r/phusion/passenger-customizable/
 FROM phusion/passenger-customizable:0.9.16
 
 # Set correct environment variables.
@@ -19,7 +19,8 @@ WORKDIR /home/app/cybercaptor-client
 
 # Add nginx configuration
 RUN rm /etc/nginx/sites-enabled/default
-ADD cybercaptor-client.conf /etc/nginx/sites-enabled/cybercaptor-client.conf
+ADD cybercaptor-client.conf /etc/nginx/sites-available/cybercaptor-client.conf
+RUN ln -s /etc/nginx/sites-available/cybercaptor-client.conf /etc/nginx/sites-enabled/cybercaptor-client.conf
 
 # Enable nginx
 RUN rm -f /etc/service/nginx/down
