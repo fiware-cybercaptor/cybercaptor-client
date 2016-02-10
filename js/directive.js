@@ -43,13 +43,6 @@ myApp.directive('graphDrawing', function() {
             var width = 1175 - margin.left - margin.right;
             var height = 400 - margin.top - margin.bottom;
 
-            var color = d3.scale.category20();
-            
-            var graphDatas = {
-                links : [],
-                nodes : []
-            };         
-
             scope.init();
 
             // $watch update graph if data in $scope.grapheDatas are modified
@@ -76,7 +69,7 @@ myApp.directive('graphDrawing', function() {
                          .on("dragend", dragend);
 
                     function dragstart(d, i) {
-                        force.stop() // stops the force auto positioning before you start dragging
+                        force.stop(); // stops the force auto positioning before you start dragging
                     }
 
                     function dragmove(d, i) {
@@ -115,7 +108,7 @@ myApp.directive('graphDrawing', function() {
                             "<br>" + "Fact : " + d.Fact + 
                             "<br>" + "Metric : " + d.Metric + 
                             "<br>" + "Type : " + d.Type; 
-                        })
+                        });
                         svg.call(tip);
                     //---End "ToolTip"---
 
@@ -167,7 +160,7 @@ myApp.directive('graphDrawing', function() {
             });
         }
     }
-})
+});
 
 /**
 *   Topological Attack Graph Directive
@@ -186,11 +179,6 @@ myApp.directive('graphTopoDrawing', function() {
             var height = 400 - margin.top - margin.bottom;
 
             var color = d3.scale.category20();
-            
-            var graphDatas = {
-                links : [],
-                nodes : []
-            };         
 
             scope.init();
 
@@ -218,7 +206,7 @@ myApp.directive('graphTopoDrawing', function() {
                          .on("dragend", dragend);
 
                     function dragstart(d, i) {
-                        force.stop() // stops the force auto positioning before you start dragging
+                        force.stop(); // stops the force auto positioning before you start dragging
                     }
 
                     function dragmove(d, i) {
@@ -256,7 +244,7 @@ myApp.directive('graphTopoDrawing', function() {
                         .offset([-10, 0])
                         .html(function (d) { return "Name : " + d.Name + 
                                                 "<br />" + "IP : " + d.IP;
-                                            })
+                                            });
                         svg.call(tip);
                     //---End "ToolTip"---
 
@@ -336,7 +324,7 @@ myApp.directive('graphTopoDrawing', function() {
             });
         }
     }
-})
+});
 
 // **************************************************************
 
@@ -353,7 +341,7 @@ myApp.directive('configurationDrawing', function() {
             scope.init();
         }
     }
-})
+});
 
 // ****************************************************************
 /**
@@ -371,13 +359,6 @@ myApp.directive('graphSimulDrawing', function() {
             var margin = {top: -10, right: -10, bottom: -10, left: -10};
             var width = 1175 - margin.left - margin.right;
             var height = 400 - margin.top - margin.bottom;
-
-            var color = d3.scale.category20();
-            
-            var graphDatas = {
-                links : [],
-                nodes : []
-            };         
 
             scope.init();
 
@@ -405,7 +386,7 @@ myApp.directive('graphSimulDrawing', function() {
                          .on("dragend", dragend);
 
                     function dragstart(d, i) {
-                        force.stop() // stops the force auto positioning before you start dragging
+                        force.stop(); // stops the force auto positioning before you start dragging
                     }
 
                     function dragmove(d, i) {
@@ -444,7 +425,7 @@ myApp.directive('graphSimulDrawing', function() {
                             "<br>" + "Fact : " + d.Fact + 
                             "<br>" + "Metric : " + d.Metric + 
                             "<br>" + "Type : " + d.Type; 
-                        })
+                        });
                         svg.call(tip);
                     //---End "ToolTip"---
 
@@ -498,7 +479,7 @@ myApp.directive('graphSimulDrawing', function() {
             });
         }
     }
-})
+});
 
 /**
 *   Graph Directive for Dynamic Risk Analysis
@@ -516,15 +497,7 @@ myApp.directive('graphDrawingDra', function() {
             var width = 1175 - margin.left - margin.right;
             var height = 400 - margin.top - margin.bottom;
 
-            var color = d3.scale.category20();
-            
-            var graphDatas = {
-                links : [],
-                nodes : []
-            };         
-
             scope.init();
-
 
             // $watch update graph if data in $scope.grapheDatas are modified
             scope.$watch('graphes', function (graphes) {
@@ -550,7 +523,7 @@ myApp.directive('graphDrawingDra', function() {
                          .on("dragend", dragend);
 
                     function dragstart(d, i) {
-                        force.stop() // stops the force auto positioning before you start dragging
+                        force.stop(); // stops the force auto positioning before you start dragging
                     }
 
                     function dragmove(d, i) {
@@ -587,7 +560,7 @@ myApp.directive('graphDrawingDra', function() {
                         .offset([-10, 0])
                         .html(function(d) { return "Name : " + d.Name + 
                                                 "<br />" + "IP : " + d.IP;
-                                            })
+                                            });
                         svg.call(tip);
                     //---End "ToolTip"---
 
@@ -654,4 +627,4 @@ myApp.directive('graphDrawingDra', function() {
             });
         }
     }
-})
+});

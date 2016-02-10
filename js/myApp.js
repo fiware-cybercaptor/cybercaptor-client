@@ -39,9 +39,9 @@ var myApp = angular.module('CyberCAPTOR', ['routeAppControllers', 'ngRoute', 'ng
 */
 myApp.constant("myConfig", {
 	// URL base for REST request
-    "url": "http://localhost:8080/cybercaptor-server/rest/json",
-    "config" : "http://localhost:8080/cybercaptor-server/rest/json/configuration/remediation-cost-parameters"
-})
+    "url": "http://10.0.100.101:8001/cybercaptor-server/rest/json",
+    "config" : "http://10.0.100.101:8001/cybercaptor-server/rest/json/configuration/remediation-cost-parameters"
+});
 
 /**
 *	Defines route and controller

@@ -49,13 +49,13 @@ myApp.filter('listFilter', [function(){
 
 			angular.forEach(items, function(item){
 				var normalText = item.name;
-				var lowerText = (item.name).toLowerCase();
+				var lowerText = item.name.toLowerCase();
 
 				// Manage input with strict case and lower case
 				if(normalText.indexOf(searchText) >= 0 || lowerText.indexOf(searchText) >= 0){
 					filtered.push(item);
 				}
-			})
+			});
 			return filtered;
 		}
 	};

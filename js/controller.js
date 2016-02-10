@@ -55,7 +55,7 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
     $scope.init = function(){
 
         // Request the list of host : name, metric,...
-        var hostList = $http.get(myConfig.url + "/host/list")
+        $http.get(myConfig.url + "/host/list")
             .then(function(host){
                 $scope.listHosts = host.data;
             }, function(){alert("Loading of host list failed.")});
@@ -66,23 +66,18 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
                 $scope.items = valNumber.data;
 
                 // Array of value for the list
-                $scope.tab = [ {id, value} ];
+                $scope.tab = [];
 
                 // Fill the tab with ID and Values
                 for(var i=1; i <= $scope.items.number; ++i){
-                    var id = i-1;
-                    var value = i;
-                    var list = {"ID" : id, "Value" : value};
-
-                    $scope.tab[i-1] = list;
+                    $scope.tab[i-1] = {"ID" : i-1, "Value" : i};
                 }
 
                 // Request data to build graph
                 var graph = $http.get(myConfig.url + "/attack_graph")
                     .then(function(valGraph) {
 
-                        var donnee = transformGraph(valGraph.data);
-                        $scope.attack_graph = donnee;
+                        $scope.attack_graph = transformGraph(valGraph.data);
 
                         $scope.valSelecter = $scope.tab[defaultPath.ID];
                         $scope.appel(defaultPath);   
@@ -93,16 +88,15 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
     // Request to display data from remediation
     $scope.appel = function(numb){
 
-        var appel = $http.get(myConfig.url + "/attack_path/" + numb.ID)
+        $http.get(myConfig.url + "/attack_path/" + numb.ID)
             .then(function(graph){
                 var pathGraph = transformPath(graph.data, $scope.attack_graph);
                 $scope.graphes = pathGraph;
 
                 // Request to retrieve remediations for the attack path
-                var remed = $http.get(myConfig.url + "/attack_path/" + numb.ID + "/remediations")
+                $http.get(myConfig.url + "/attack_path/" + numb.ID + "/remediations")
                     .then(function(dataRemediations){
-                        var remediations = transformRemediation(dataRemediations.data);
-                        $scope.dataRemediations = remediations;
+                        $scope.dataRemediations = transformRemediation(dataRemediations.data);
 
                         // Limits attack path's score
                         if(pathGraph.scoring != undefined){
@@ -110,22 +104,20 @@ routeAppControllers.controller('attackPathController', function ($scope, $http, 
                         }
                     }, function(){alert("Loading of remediations failed.")})
             }, function(){alert("Loading of attack path" + numb.ID + " failed.")})
-    }
+    };
 
     $scope.simulRemed = function(remed, path){
 
         serviceTest.setArray(remed, path);
 
-        var newRemed = $http.get(myConfig.url + "/attack_path/" + path.ID + "/remediation/" + remed.ID)
+        $http.get(myConfig.url + "/attack_path/" + path.ID + "/remediation/" + remed.ID)
             .then(function(graph){
-                var newGraph = transformGraph(graph.data);
+                $scope.graphes = transformGraph(graph.data);
 
-                $scope.graphes = newGraph;
-
-                serviceTest.set($scope.graphes);              
+                serviceTest.set($scope.graphes);
             }, function(){alert("Loading of a remediation failed.")})
     }
-})
+});
 
 // ****************************************************
 
@@ -149,7 +141,7 @@ routeAppControllers.controller("RadialGaugeDemoCtrl", function($scope){
         {min: 60, max: 80, color: '#FF0000'},
         {min: 80, max: 100, color: '#000000'}
     ];
-})
+});
 
 
 // ****************************************************
@@ -162,31 +154,30 @@ routeAppControllers.controller("RadialGaugeDemoCtrl", function($scope){
 *
 *   Retrieve data from server
 */
-routeAppControllers.controller('attackGraphController', function ($scope, $http, myConfig, serviceTest) {
-    
+routeAppControllers.controller('attackGraphController', function ($scope, $http, myConfig) {
+
     $scope.view = {
         status : "Topological"
     };   
 
     $scope.init = function(){
 
-        var number = $http.get(myConfig.url + "/attack_path/number")
+        $http.get(myConfig.url + "/attack_path/number")
             .then(function(valNumber) {
                 $scope.items = valNumber.data;
 
                 var list = $http.get(myConfig.url + "/attack_path/list")
                     .then(function(valList) {
                         $scope.tab = valList.data;
-                    }, function(){alert("Loading of attach path list failed.")})
+                    }, function(){alert("Loading of attach path list failed.")});
 
                 var graph = $http.get(myConfig.url + "/attack_graph")
                     .then(function(valGraph) {
-                        var donnee = transformGraph(valGraph.data);
-                        $scope.graphes = donnee;
-                    }, function(){alert("Loading of attach graph failed.")})      
+                        $scope.graphes = transformGraph(valGraph.data);
+                    }, function(){alert("Loading of attach graph failed.")})
             }, function(){alert("Loading of number of attack paths failed.")})
     };   
-})
+});
 
 
 // ****************************************************
@@ -214,7 +205,7 @@ routeAppControllers.controller('simulController', function ($scope, $http, myCon
                 var list = $http.get(myConfig.url + "/attack_path/list")
                     .then(function(valList) {
                          $scope.tab = valList.data;
-                    }, function(){alert("Loading of attack path list failed.")})
+                    }, function(){alert("Loading of attack path list failed.")});
 
                 var graph = $http.get(myConfig.url + "/attack_graph")
                     .then(function(valGraph) {
@@ -238,7 +229,7 @@ routeAppControllers.controller('simulController', function ($scope, $http, myCon
             .then(function(){
             }, function(){alert("Sending remediation validation message failed.")})
     };
-})
+});
 
 
 // ****************************************************
@@ -257,11 +248,10 @@ routeAppControllers.controller('attackGraphTopologicalController', function ($sc
 
         var topological = $http.get(myConfig.url + "/attack_graph/topological")
             .then(function(data) {
-                var attackTopoGraph = transformGraphTopo(data.data);
-                $scope.graphes = attackTopoGraph;
+                $scope.graphes = transformGraphTopo(data.data);
             }, function(){alert("Loading of topological attack graph failed.")})    
     };   
-})
+});
 
 
 // ****************************************************
@@ -287,21 +277,16 @@ routeAppControllers.controller('attackPathTopologicalController', function ($sco
                 var numberPath = valNumber.data;
 
                 // Array of value for the list
-                $scope.tab = [ {id, value} ];
+                $scope.tab = [];
 
                 // Fill the tab with ID and Values
                 for(var i=1; i <= numberPath.number; ++i){
-                    var id = i-1;
-                    var value = i;
-                    var list = {"ID" : id, "Value" : value};
-
-                    $scope.tab[i-1] = list;
+                    $scope.tab[i-1] = {"ID" : i-1, "Value" : i};
                 }
 
-                var attackGraph = $http.get(myConfig.url + "/attack_graph")
+                $http.get(myConfig.url + "/attack_graph")
                     .then(function(attackGraph){
-                        var graph = transformGraph(attackGraph.data);
-                        $scope.attack_graph = graph;
+                        $scope.attack_graph = transformGraph(attackGraph.data);
 
                         var defaultPath = 0;
 
@@ -317,14 +302,12 @@ routeAppControllers.controller('attackPathTopologicalController', function ($sco
     };   
 
     $scope.callTopoGraph = function(value){
-
-        var callTopoGraph = $http.get(myConfig.url + "/attack_path/" + value + "/topological")
+        $http.get(myConfig.url + "/attack_path/" + value + "/topological")
             .then(function(graphTopo){
-                var pathTopoGraph = transformPathTopo(graphTopo.data, $scope.attack_graph);
-                $scope.graphes = pathTopoGraph;
+                $scope.graphes = transformPathTopo(graphTopo.data, $scope.attack_graph);
             }, function(){alert("Loading of a topological attack path failed.")})
     }
-})
+});
 
 // ****************************************************
 /**
@@ -337,76 +320,70 @@ routeAppControllers.controller('attackPathTopologicalController', function ($sco
 *   Initialize values
 */
 routeAppControllers.controller('configurationController', function ($scope, $http, myConfig, serviceTest) {
-    
-    var item = { id, value };
+
     var values = ["Negligeable", "Minor", "Medium", "Severe", "Catastrophic"]; 
 
+    var i;
     $scope.choice = {
         status : 'global'
     };
 
-    $scope.tabMetric = [ {id, value }]; 
+    $scope.tabMetric = [];
 
-    for(var i=0; i< values.length; ++i){
-        var id = i;
+    for(i=0; i < values.length; ++i){
         var value = values[i];
-        var item = {"ID":id, "Value":value};
-        $scope.tabMetric[i] = item;
+        $scope.tabMetric[i] = {"ID": i, "Value":value};
     }
 
     // Function available in $scope, to begin the procedure
     $scope.init = function(){
 
         // Request the list of host : name, metric,...
-        var metric = $http.get(myConfig.url + "/host/list")
+        $http.get(myConfig.url + "/host/list")
             .then(function(host){
 
                 $scope.listHosts = host.data;
 
                     // Array of values before update 
-                    $scope.tabTmp = [ {value} ];
+                    $scope.tabTmp = [];
 
                     var lengthHost = $scope.listHosts.hosts.length;
 
-                    for(var i=0; i<lengthHost; ++i){
-                        var index;
+                    for(i=0; i<lengthHost; ++i){
                         $scope.listHosts.hosts[i].index = i;
                     }
 
-                    for(var i=0; i<lengthHost-1; ++i){
+                    for(i=0; i<lengthHost-1; ++i){
                         if($scope.listHosts.hosts[i].security_requirements[0] == undefined){
-                            $scope.listHosts.hosts[i].security_requirements.push({"metric": "Negligeable"}); 
-                            var value = $scope.listHosts.hosts[i].security_requirements[0].metric;
-                            var item = {"Value": value};
-                            $scope.tabTmp[i] = item;                               
+                            $scope.listHosts.hosts[i].security_requirements.push({"metric": "Negligeable"});
+                            $scope.tabTmp[i] = {"Value": $scope.listHosts.hosts[i].security_requirements[0].metric};
                         }
                         else{
                             // lengthHost-1 : remove "internet_Host" with undefined metric
-                            for(var i=0; i < lengthHost-1; ++i){
-                                var value = $scope.listHosts.hosts[i].security_requirements[0].metric;
-                                var item = {"Value": value};
-                                $scope.tabTmp[i] = item;
+                            for(i=0; i < lengthHost-1; ++i){
+                                $scope.tabTmp[i] = {"Value": $scope.listHosts.hosts[i].security_requirements[0].metric};
                             }
                         }
                     }
-            }, function(){alert("Loading of host list failed.")})
+            }, function(){alert("Loading of host list failed.")});
 
-        var global = $http.get(myConfig.config + "/global")
+        $http.get(myConfig.config + "/global")
             .then(function(data){
                 $scope.global = data.data;
-        }, function(){alert("Loading of global data failed.")})
-        var snortRule = $http.get(myConfig.config + "/snort-rule")
+        }, function(){alert("Loading of global data failed.")});
+        $http.get(myConfig.config + "/snort-rule")
             .then(function(data){
                 $scope.snortRule = data.data;
-        }, function(){alert("Loading of snort rule failed.")})
-        var firewall = $http.get(myConfig.config + "/firewall-rule")
+        }, function(){alert("Loading of snort rule failed.")});
+        $http.get(myConfig.config + "/firewall-rule")
             .then(function(data){
                 $scope.firewall = data.data;
-        }, function(){alert("Loading of firewall rule failed.")})
-        var patch = $http.get(myConfig.config + "/patch")
+        }, function(){alert("Loading of firewall rule failed.")});
+        $http.get(myConfig.config + "/patch")
             .then(function(data){
                 $scope.patch = data.data;
-        }, function(){alert("Loading of patch data failed.")})
+        }, function(){alert("Loading of patch data failed.")});
+
         serviceTest.set($scope);
         serviceTest.get();
     };   
@@ -428,7 +405,7 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
             .then(function(data){
             }, function(){alert("Uploading remediation cost parameters failed.")})
     };
-})
+});
 
 
 // ****************************************************
@@ -440,21 +417,19 @@ routeAppControllers.controller('configurationController', function ($scope, $htt
 *
 */
 
-routeAppControllers.controller('dynamicRiskAnalysisController', function($scope, $http, myConfig, serviceTest){
+routeAppControllers.controller('dynamicRiskAnalysisController', function($scope, $http, myConfig){
     
     var diffTime = 0;
     var res = 0;
     var tab = [];
     $scope.tabAlert = { tab: tab };
-    //var fake = {};
 
     $scope.init = function(){
 
         var topological = $http.get(myConfig.url + "/attack_graph/topological")
             .then(function(data) {
                 $scope.tmpData = data.data;
-                var attackTopoGraph = transformGraphTopoDRA(data.data);
-                $scope.graphes = attackTopoGraph;
+                $scope.graphes = transformGraphTopoDRA(data.data);
             }, function(){alert("Loading of topological attack graph failed.")})    
     };   
 
@@ -462,7 +437,7 @@ routeAppControllers.controller('dynamicRiskAnalysisController', function($scope,
     function getAlarm(){
         var alarms = $http.get(myConfig.url + "/idmef/alerts")
             .then(function(info){
-		data = info.data
+		        var data = info.data;
                 // Stock data
                 tab.unshift(data);
 
@@ -479,23 +454,21 @@ routeAppControllers.controller('dynamicRiskAnalysisController', function($scope,
     }    
 
     $scope.alertFunc = function(){
-        var timer = setInterval(getAlarm, 3000);
+        setInterval(getAlarm, 3000);
     };
 
     $scope.dra = function(data){
 
-        var graphDRA = transformGraphTopoDRA($scope.tmpData, data);
-        $scope.graphes = graphDRA;
+        $scope.graphes = transformGraphTopoDRA($scope.tmpData, data);
 
-        var reme = data.dynamic_remediations;
-        $scope.draRemed = reme;
+        $scope.draRemed = data.dynamic_remediations;
     };
 
     $scope.displayModal = function(){
         $("#myModal").modal("show");
     }
 
-})
+});
 
 
 // ****************************************************
@@ -561,4 +534,4 @@ routeAppControllers.controller('initController', function($scope, $http, myConfi
     };
     console.info('uploader', uploader);
 
-})
+});
