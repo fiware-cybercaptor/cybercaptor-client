@@ -85,7 +85,7 @@ This page can be accessed at this adress : http://localhost:8000/#/welcome
 This page initializes the server with data provided in the topological
 XML file.
 
-.. figure:: /manual/initial.png
+.. figure:: /doc/manual/initial.png
    :alt: Initialization page
 
    Initialization page
@@ -98,7 +98,7 @@ appears to acknowledge the good reception.
 Now, the server has received your data and CyberCAPTOR is ready for risk
 analysis.
 
-.. figure:: /manual/initialReady.png
+.. figure:: /doc/manual/initialReady.png
    :alt: Server ready
 
    Server ready
@@ -123,7 +123,7 @@ The other panel lists the parameters used for the remediation cost
 calculation. Change them according to your preferences and click on
 "Save".
 
-.. figure:: /manual/config.png
+.. figure:: /doc/manual/config.png
    :alt: Configuration page
 
    Configuration page
@@ -140,7 +140,7 @@ switch in a logical view by selecting the proper mode. If you put your
 cursor above a node, you can see the node details. You can also move the
 nodes using drag and drop.
 
-.. figure:: /manual/attackGraph.png
+.. figure:: /doc/manual/attackGraph.png
    :alt: Attack Graph page
 
    Attack Graph page
@@ -172,14 +172,14 @@ The button "Simulate" open a new page "Remediation Simulation".
 
 You can see the attack path in a logical view.
 
-.. figure:: /manual/AttackPath.png
+.. figure:: /doc/manual/AttackPath.png
    :alt: Attack path, logical view
 
    Attack path, logical view
 
 Or in a topological view
 
-.. figure:: /manual/AttackPathTopo.png
+.. figure:: /doc/manual/AttackPathTopo.png
    :alt: Attack path, topological view
 
    Attack path, topological view
@@ -200,7 +200,7 @@ If you wan to confirm the remediation application, click on "Validate"
 to certify that you are going to apply this remediation. This action
 increments the habit score of this remediation.
 
-.. figure:: /manual/remediationSimul.png
+.. figure:: /doc/manual/remediationSimul.png
    :alt: Remediation Simulation page
 
    Remediation Simulation page
@@ -213,7 +213,7 @@ This page can be accessed at this adress : http://localhost:8000/#/dynamicRiskAn
 This page allow to visualize the currently happening attacks on your
 information system received by the server in IDMEF.
 
-.. figure:: /manual/DRA.png
+.. figure:: /doc/manual/DRA.png
    :alt: Dynamic Risk Analysis page
 
    Dynamic Risk Analysis page
@@ -221,7 +221,7 @@ information system received by the server in IDMEF.
 The alarms are stored in the Alarm Box, you can selected one and see its
 impact on the whole information system.
 
-.. figure:: /manual/DRAVisu.png
+.. figure:: /doc/manual/DRAVisu.png
    :alt: Dynamic Risk Analysis visualization
 
    Dynamic Risk Analysis visualization
@@ -229,7 +229,7 @@ impact on the whole information system.
 To see the dynamic remediations known to solve the vulnerability, click
 on "Remediations".
 
-.. figure:: /manual/DRARemed.png
+.. figure:: /doc/manual/DRARemed.png
    :alt: Dynamic Risk Analysis remediations
 
    Dynamic Risk Analysis remediations
@@ -248,7 +248,7 @@ In the following example, there are 5 nodes :
 -  node (4) : Rule for remote exploit
 -  node (5) : Execute code on "linux-user 2" as user
 
-.. figure:: /manual/example.png
+.. figure:: /doc/manual/example.png
    :alt: Interpretation
 
    Interpretation
